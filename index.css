@@ -25,30 +25,40 @@ a:hover {
     justify-content: space-between;
 }
 .thumb img {
-    xwidth: 200px;
+    width: inherit;
 }
-.thumb figure video {
-    width: 200px;
-    xheight: 100px;
+.thumb video {
+    width: inherit;
 }
 
-.thumb figure img {
-    width: 200px;
-    xheight: 100px;
+
+.thumb figure {
+    width: 300px;
+    xmax-height: 150px;
 }
+
+div.gallery {
+    display: flex;
+    flex-flow: row;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+figure:hover {
+    transform: rotate(5deg);
+    transition: transform .1s ease-in-out;  
+}
+
 figure {
-  display: inline-table;
-  border: 1px black solid;
-  border-top-style: none;
-  padding: 2px;
-  margin: 10px;
+    display: inline-flex;
+    flex-direction: column;
+    padding: .4em;
+    margin: .4em;
+    box-shadow: 0px 0px 10px;
+    background: rgba(180,200,180,90); 
 }
 figcaption {
-    padding: 0.5em;
-    display: table-caption;
-    caption-side: top;
-    border: 1px black solid;
-    border-bottom-style: none;
     text-align: center;
 }
 
