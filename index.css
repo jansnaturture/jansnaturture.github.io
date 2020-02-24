@@ -25,19 +25,23 @@ a:hover {
     justify-content: space-between;
 }
 .thumb img {
-    width: 150px;
+    xwidth: 200px;
+}
+.thumb figure video {
+    width: 200px;
+    xheight: 100px;
 }
 
 .thumb figure img {
-    width: 150px;
-    height: 100px;
+    width: 200px;
+    xheight: 100px;
 }
 figure {
   display: inline-table;
   border: 1px black solid;
   border-top-style: none;
-  padding: 0;
-  margin: 0;
+  padding: 2px;
+  margin: 10px;
 }
 figcaption {
     padding: 0.5em;
