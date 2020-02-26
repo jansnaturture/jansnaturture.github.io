@@ -25,13 +25,6 @@ a:hover {
     justify-content: space-between;
 }
 
-.thumb img {
-    width: inherit;
-}
-.thumb video {
-    width: inherit;
-}
-
 *:hover > .tooltip {
 	visibility: visible;
 	transform: rotate(5deg);
@@ -48,13 +41,15 @@ a:hover {
 	z-index: 1;
 	width: inherit;
 	cursor:pointer;
-	
 }
 
 
-.thumb figure {
-    width: 20em;
-	max-width: 80%;
+.thumb > figure {
+	max-width: 20em;
+}
+.thumb > figure > * {
+	xwidth: inherit;
+	max-width: inherit;
 }
 
 div.gallery {
