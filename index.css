@@ -1,10 +1,18 @@
 
+@font-face {
+	font-family: "Maiandra GD"; 
+	src: url("font/Maiandra GD.eot");
+	src: url("font/Maiandra GD.woff") format("woff")
+	;
+}
+
 body {
     font-family: tahoma, helvetica, sans-serif;
     background: rgba(186,223,185,0.62);
     color: #341a0c;
 }
 h1 { 
+    font-family: 'Maiandra GD', tahoma, helvetica, sans-serif;
     font-style: normal;
     font-size: 300%; 
     color: #164e14; 
