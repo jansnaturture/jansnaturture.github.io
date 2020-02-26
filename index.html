@@ -6,30 +6,64 @@
     <meta name=description content="Uforglemmelige naturture i vadehavets natur med den erfarne guide Jan Ravnborg">
     <title>Jans Naturture</title>
     <link rel="stylesheet" type="text/css" href="index.css" type="text/css">
+	
+	<script>
+		function hookup_tooltips() {
+			function hookup_tooltip(node) {
+				node.onclick = function() { 
+					node.style.visibility = 'hidden';
+				};
+			}
+			var tooltip_nodes = document.getElementsByClassName("tooltip");
+			var i;
+			for (var i = 0; i < tooltip_nodes.length; i++) {
+			  hookup_tooltip(tooltip_nodes[i]);
+			}
+		};
+		function loaded() {
+			hookup_tooltips();
+		};
+	</script>
   </head>
 
-  <body>
+  <body onload="loaded()">
     <h1>Jans Naturture</h1>
     <p>Uforglemmelige ture i vadehavets natur med den erfarne guide
       Jan Ravnborg.</p>
     <div class="gallery thumb">
-      <figure>
-	<video autoplay controls src="vid/sortsol_vandrefalk_360.mp4" type="media/mp4" alt="Opleve Sort sol, fuld af stære og rovfugle" poster="img/sortsol.jpg" >
-	  <img src="img/sortsol.jpg" alt="Opleve Sort sol, fuld af stære og rovfugle" />
+  <figure>
+	<div class="tooltip" >
+	  <p>Kom tæt på de fantastiske flokke med hundredetusinder af fugle.</p>
+	  <p>Klik for at se video fra en gæsts mobil</p>
+	</div>
+	<video autoplay controls poster="img/sortsol.jpg">
+	  <source src="./vid/sortsol_vandrefalk_360.mp4" type="video/mp4">
+	  <source src="./vid/sortsol_vandrefalk_360.ogg" type="video/ogg">
 	</video>
-	<figcaption>Sort Sol, helt tæt på. <br>Se video fra en gæsts mobil</figcaption>
-      </figure>
+	<figcaption>
+		Sort Sol, helt tæt på.
+		</figcaption>
+  </figure>
       <figure>
+	<div class="tooltip" >
+	  <p>Lær at samle de bedste østers og tilbered dem direkte på stranden</p>
+	</div>
 	<img src="img/osters_grill.jpg" alt="Lækre østers direkte fra vadehavet" />
 	<figcaption>Saml østers. Grill dem på stranden</figcaption>
       </figure>
       <figure>
+	<div class="tooltip" >
+	  <p>Gå på tranejagt med kameraet. Måske er i heldige at se deres fantastiske dans</p>
+	  </div>
 	<img src="img/traner.jpg" alt="Traner i dans" />
 	<figcaption>Traner i dans</figcaption>
       </figure>
       <figure>
+	<div class="tooltip" >
+	  <p>Se de store rovfugle på de bedste steder og lær de sky hedehøge og andre rovfugle at kende</p>
+	  </div>
 	<img src="img/havorn.jpg" alt="Havørn fanger fisk" />
-	<figcaption>Havørne og de andre lokale rovfugle</figcaption>
+	<figcaption>Havørne og lokale rovfugle</figcaption>
       </figure>
     </div>
     <p>

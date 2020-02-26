@@ -24,6 +24,7 @@ a:hover {
     width: 100%;
     justify-content: space-between;
 }
+
 .thumb img {
     width: inherit;
 }
@@ -31,10 +32,29 @@ a:hover {
     width: inherit;
 }
 
+*:hover > .tooltip {
+	visibility: visible;
+	transform: rotate(5deg);
+    transition: transform .5s ease-in-out;  
+}
+.tooltip {
+	visibility: hidden;
+	display: block;
+	position: absolute;
+	background: rgba(200, 200, 0, 0.8);
+	
+	border-radius: .5em;
+	padding: .5em;
+	z-index: 1;
+	width: inherit;
+	cursor:pointer;
+	
+}
+
 
 .thumb figure {
-    width: 300px;
-    xmax-height: 150px;
+    width: 20em;
+	max-width: 80%;
 }
 
 div.gallery {
@@ -46,8 +66,6 @@ div.gallery {
 }
 
 figure:hover {
-    transform: rotate(5deg);
-    transition: transform .1s ease-in-out;  
 }
 
 figure {
