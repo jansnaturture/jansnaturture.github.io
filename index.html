@@ -4,25 +4,25 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Uforglemmelige naturture i vadehavets natur med den erfarne guide Jan Ravnborg">
-    <title>Jans Naturture</title>
-    <link rel="stylesheet" type="text/css" href="index.css" type="text/css">
 	<script>
-		function hookup_tooltips() {
-			function hookup_tooltip(node) {
+		function hookup_explain() {
+			function hookup_explain(node) {
 				node.onclick = function() { 
 					node.style.visibility = 'hidden';
 				};
 			}
-			var tooltip_nodes = document.getElementsByClassName("tooltip");
+			var nodes = document.getElementsByClassName("explain");
 			var i;
-			for (var i = 0; i < tooltip_nodes.length; i++) {
-			  hookup_tooltip(tooltip_nodes[i]);
+			for (var i = 0; i < nodes.length; i++) {
+			  hookup_explain(nodes[i]);
 			}
 		};
 		function loaded() {
-			hookup_tooltips();
+			hookup_explain();
 		};
 	</script>
+    <title>Jans Naturture</title>
+    <link rel="stylesheet" type="text/css" href="index.css" type="text/css">
   </head>
 
   <body onload="loaded()">
@@ -31,7 +31,7 @@
       Jan Ravnborg.</p>
     <div class="gallery thumb">
   <figure>
-	<div class="tooltip" >
+	<div class="explain" >
 	  <p>Kom tæt på de fantastiske flokke med hundredetusinder af fugle.</p>
 	  <p>Klik for at se video fra en gæsts mobil</p>
 	</div>
@@ -44,21 +44,21 @@
 		</figcaption>
   </figure>
       <figure>
-	<div class="tooltip" >
+	<div class="explain" >
 	  <p>Lær at samle de bedste østers og tilbered dem direkte på stranden</p>
 	</div>
 	<img src="img/osters_grill.jpg" alt="Lækre østers direkte fra vadehavet" />
 	<figcaption>Saml østers. Grill dem på stranden</figcaption>
       </figure>
       <figure>
-	<div class="tooltip" >
+	<div class="explain" >
 	  <p>Tag med på tranejagt med kameraet. Måske er i heldige at se deres fantastiske dans</p>
 	  </div>
 	<img src="img/traner.jpg" alt="Traner i dans" />
 	<figcaption>Traner i dans</figcaption>
       </figure>
       <figure>
-	<div class="tooltip" >
+	<div class="explain" >
 	  <p>Se de store rovfugle på de bedste steder og lær de sky hedehøge og andre rovfugle at kende</p>
 	  </div>
 	<img src="img/havorn.jpg" alt="Havørn fanger fisk" />

@@ -27,30 +27,30 @@ a:hover {
     text-decoration: underline;
 }
 
-.even100pct {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-}
-
-*:hover > .tooltip {
+*:hover > .explain {
 	visibility: visible;
-	transform: rotate(5deg);
+	transform: rotate(-5deg);
     transition: transform .5s ease-in-out;  
 }
-.tooltip {
+.explain {
 	visibility: hidden;
 	display: block;
+	font-weight: bold;
 	position: absolute;
-	background: rgba(200, 200, 0, 0.8);
-	
-	border-radius: .5em;
-	padding: .5em;
+
+    margin: 0pt 0pt 0pt -2em;
+    border-style: solid;
+    border-color: rgba(49, 132, 74, 0.0);
+    border: 1em 5em;
+    border-width: 0em 2em;
+    border-radius: 2em;
+
+	color: white;
+	background: rgba(49, 132, 74, 0.8);
 	z-index: 1;
 	width: inherit;
 	cursor:pointer;
 }
-
 
 .thumb > figure {
 	max-width: 20em;
@@ -65,7 +65,7 @@ div.gallery {
     flex-flow: row;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 figure:hover {
@@ -77,10 +77,11 @@ figure {
     padding: .4em;
     margin: .4em;
     box-shadow: 0px 0px 10px;
-    background: rgba(180,200,180,90); 
+	background: white;
 }
 figcaption {
     text-align: center;
+	color: black;
 }
 
 .hardbreak
