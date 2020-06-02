@@ -1,78 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Uforglemmelige naturture i vadehavets natur med den erfarne guide Jan Ravnborg">
-	<script>
-		function hookup_explain() {
-			function hookup_explain(node) {
-				node.onclick = function() { 
-					node.style.visibility = 'hidden';
-				};
-			}
-			var nodes = document.getElementsByClassName("explain");
-			var i;
-			for (var i = 0; i < nodes.length; i++) {
-			  hookup_explain(nodes[i]);
-			}
-		};
-		function loaded() {
-			hookup_explain();
-		};
-	</script>
-    <title>Jans Naturture</title>
-    <link rel="stylesheet" type="text/css" href="index.css" type="text/css">
-  </head>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Uforglemmelige naturture i vadehavets natur med den erfarne guide Jan Ravnborg" />
+		<script>
+			//<![CDATA[
+			function hookup_explain() {
+				function hookup_explain(node) {
+					node.onclick = function() { 
+						node.style.visibility = 'hidden';
+					};
+				}
+				var nodes = document.getElementsByClassName("explain");
+				var i;
+				for (var i = 0; i < nodes.length; i++) {
+				  hookup_explain(nodes[i]);
+				}
+			};
+			function loaded() {
+				hookup_explain();
+			};
+			//]]>
+		</script>
+		<script async defer crossorigin="anonymous" src="https://connect.facebook.net/da_DK/sdk.js#xfbml=1&version=v7.0"></script>
+		<title>Jans Naturture</title>
+		<link rel="stylesheet" type="text/css" href="index.css" />
+	</head>
 
-  <body onload="loaded()">
-	<h1>Jans Naturture</h1>
-    <p>Uforglemmelige ture i vadehavets natur med den erfarne guide
-      Jan Ravnborg.</p>
-    <div class="gallery thumb">
-  <figure>
-	<div class="explain" >
-	</div>
-	<video autoplay controls poster="img/sortsol.jpg">
-	  <source src="./vid/sortsol_vandrefalk_360.mp4" type="video/mp4">
-	  <source src="./vid/sortsol_vandrefalk_360.ogg" type="video/ogg">
-	</video>
-	<figcaption>
-	  <p>Kom tæt på de fantastiske flokke med hundredetusinder af stære</p>
-		</figcaption>
-  </figure>
-      <figure>
-	<div class="explain" >
-	</div>
-	<img src="img/osters_grill.jpg" alt="Lækre østers direkte fra vadehavet" />
-	<figcaption>
-		<p>Oplev vadehavet med tidevandet og pluk østers og tilbered dem direkte på stranden</p>
-	</figcaption>
-      </figure>
-      <figure>
-	<div class="explain" >
-	  </div>
-	<img src="img/traner.jpg" alt="Traner i dans" />
-	<figcaption>
-		  <p>Tag på tur i den urørte skov og se tranerne i den sjældne og fredede højmose</p>
-	</figcaption>
-      </figure>
-      <figure>
-	<div class="explain" >
-	  </div>
-	<img src="img/havorn.jpg" alt="Havørn fanger fisk" />
-	<figcaption>
-		  <p>Se havørnen og andre rovfugle på de bedste steder og lær de lokale hedehøge at kende</p>
-</figcaption>
-      </figure>
-    </div>
-    <p>
-	Med Jans Naturture er der uanede muligheder. Tag gerne kontakt for at arrangere en special tilrettelagt oplevelse.
-    <address>
-	  Jans Naturture<br>
-      <a href="mailto:jan@naturture.com">Email: jan@naturture.com</a><br />
-      <a href="tel:+4528144464">Tlf: 28144464</a>
-    </address>
-  </body>
+
+	<body onload="loaded()">
+		<div id="fb-root"></div>
+		<h1>Jans Naturture</h1>
+		<p>Uforglemmelige ture i vadehavets natur med den erfarne guide Jan Ravnborg.</p>
+		<div class="fb-page" 
+			data-href="https://www.facebook.com/Naturture-103537138057231/" 
+			data-tabs="events" 
+			data-width="" 
+			data-height="" 
+			data-small-header="true" 
+			data-adapt-container-width="true" 
+			data-hide-cover="true" 
+			data-show-facepile="false">
+			<blockquote cite="https://www.facebook.com/Naturture-103537138057231/" class="fb-xfbml-parse-ignore">
+				<a href="https://www.facebook.com/Naturture-103537138057231/">Se events på facebook</a>
+			</blockquote>
+		</div>
+		<div class="gallery thumb">
+			<figure>
+				<div class="explain" ></div>
+				<video autoplay controls poster="img/sortsol.jpg">
+					<source src="./vid/sortsol_vandrefalk_360.mp4" type="video/mp4" />
+					<source src="./vid/sortsol_vandrefalk_360.ogg" type="video/ogg" />
+				</video>
+				<figcaption>
+					<p>Kom tæt på de fantastiske flokke med hundredetusinder af stære</p>
+				</figcaption>
+			</figure>
+			<figure>
+				<div class="explain" ></div>
+				<img src="img/osters_grill.jpg" alt="Lækre østers direkte fra vadehavet" />
+				<figcaption>
+					<p>Oplev vadehavet med tidevandet og pluk østers og tilbered dem direkte på stranden</p>
+				</figcaption>
+			</figure>
+			<figure>
+				<div class="explain" ></div>
+				<img src="img/traner.jpg" alt="Traner i dans" />
+				<figcaption>
+					<p>Tag på tur i den urørte skov og se tranerne i den sjældne og fredede højmose</p>
+				</figcaption>
+			</figure>
+			<figure>
+				<div class="explain" ></div>
+				<img src="img/havorn.jpg" alt="Havørn fanger fisk" />
+				<figcaption>
+					<p>Se havørnen og andre rovfugle på de bedste steder og lær de lokale hedehøge at kende</p>
+				</figcaption>
+			</figure>
+		</div>
+		<p>
+			Med Jans Naturture er der uanede muligheder. Tag gerne kontakt for at arrangere en special tilrettelagt oplevelse.
+			<address>
+				Jans Naturture<br />
+				<a href="mailto:jan@naturture.com">Email: jan@naturture.com</a><br />
+				<a href="tel:+4528144464">Tlf: 28144464</a>
+			</address>
+		</p>
+	</body>
 </html>
-
