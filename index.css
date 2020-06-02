@@ -60,9 +60,15 @@ a:hover {
 	max-width: inherit;
 }
 
-div.fb-page {
-	width: 80%;
+div.fb-iframe {
+	width: 100%;
+    justify-content: center;
 }
+div.fb-iframe iframe {
+	width: inherit;
+	height: 800px;
+}
+
 div.gallery {
     display: flex;
     flex-flow: row;
