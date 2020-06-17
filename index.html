@@ -89,7 +89,7 @@
 				function onInit() {
 					act(false);
 				}
-				//cards().forEach(consider);
+				cards().forEach(consider);
 				node.onclick = onClicked;
 				onTick.push(act);
 			}
@@ -101,7 +101,7 @@
 			function loaded() {
 				forEach(document.getElementsByClassName("explain"), hookup_explain)
 				forEach(document.querySelectorAll(".topics > *"), hookup_topic);
-				//window.setInterval(tick, 2000);
+				window.setInterval(tick, 10000);
 			};
 			//]]>
 		</script>
