@@ -104,13 +104,6 @@ div.topics > figure > figcaption {
 	font-weight: bolder;
 	font-size: 200%;
 }
-xdiv.topics > figure > figcaption::before {
-	content: "";
-	display: block;
-	padding: .1em 0em .1em 0em;
-	margin: 0em 0em .1em 0em;
-	background: #164e14;
-}
 
 h1 { 
     font-family: 'Maiandra GD', tahoma, helvetica, sans-serif;
