@@ -6,20 +6,102 @@
 		<meta name="description" content="Uforglemmelige naturture i vadehavets natur med den erfarne guide Jan Ravnborg" />
 		<script>
 			//<![CDATA[
-			function hookup_explain() {
-				function hookup_explain(node) {
-					node.onclick = function() { 
-						node.style.visibility = 'hidden';
-					};
+			function regExpEscape(literal) {
+                return literal.replace(/[-[\]{}()*+!<=:?.\/\\^$|#\s,]/g, '\\$&');
+			}
+			function forEach(items, callback) {
+				for(var i = 0; i < items.length; ++i) {
+					callback(items[i], i);
 				}
-				var nodes = document.getElementsByClassName("explain");
-				var i;
-				for (var i = 0; i < nodes.length; i++) {
-				  hookup_explain(nodes[i]);
+			}
+
+			let canClassList = !(document.createElement('p').classList === undefined);
+			function classList(clazz) {
+				if (clazz === undefined) {
+					function ignore(node) {}
+					return { add: ignore, remove: ignore };
 				}
-			};
+				if ( canClassList ) {
+					function add(node) {
+						return node.classList.add(clazz);
+					}
+					function remove(node) {
+						return node.classList.remove(clazz);
+					}
+					return { add: add, remove: remove };
+				}
+
+				function add(node) {
+					var change = node.className.search(rm) >= 0;
+					if (change)
+						node.className += " " + clazz;
+				}
+				var rm = new RegExp('(\\s|^)' + regExpEscape(clazz) + '(\\s|$)');
+				function remove(node) {
+					var change = node.className.search(rm) >= 0;
+					if (change)
+						node.className = rm.node.className.replace(rm, '');
+				}
+				return { add: add, remove: remove };
+			}
+
+			function classTag(clazz, inverseClazz = undefined) {
+				var activateTag = classList(clazz);
+				var inactiveTag = classList(inverseClazz);
+				function set(node, active) {
+					if (active) {
+						activateTag.add(node);
+						inactiveTag.remove(node);
+					} else {
+						activateTag.remove(node);
+						inactiveTag.add(node);
+					}
+				}
+				return set;
+			}
+			var activeTag = classTag("active", "inactive");
+
+			var onTick = [];
+			function tick() {
+				function invoke(x, i) {
+					x(i);
+				}
+				forEach(onTick, invoke);
+			}
+			function hookup_topic(node) {
+				function cards() { return node.querySelectorAll("figure"); }
+				var active = 0;
+				function consider(node, i) {
+					activeTag(node, i == active);
+				}
+				function act(advance) {
+					cs = cards();
+					if (advance)
+					    active = (active + 1) % cs.length;
+					cs.forEach(consider);
+				}
+				function onTicked() {
+					act(node.querySelectorAll(":hover").length == 0);
+				}
+				function onClicked() {
+					act(true);
+				}
+				function onInit() {
+					act(false);
+				}
+				//cards().forEach(consider);
+				node.onclick = onClicked;
+				onTick.push(act);
+			}
+			function hookup_explain(node) {
+				node.onclick = function() { 
+					node.style.visibility = 'hidden';
+				};
+			}
 			function loaded() {
-				hookup_explain();
+				forEach(document.getElementsByClassName("explain"), hookup_explain)
+				forEach(document.querySelectorAll(".topics > *"), hookup_topic);
+				//window.setInterval(tick, 2000);
 			};
 			//]]>
 		</script>

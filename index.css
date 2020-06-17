@@ -53,30 +53,64 @@ div.topics figure > * {
 	margin: 0em;
 }
 
-div.topics > figure > figure + figure {
-	xxmargin: .2em 0em .2em 0em;
-	xpadding: .1em 0em .2em 0em;
-	display: none;
-	border: 5px solid red;
+
+xdiv {
+    transition: opacity 1s ease-out;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+xdiv.active {
+    opacity: 1;
+    height: auto;
+}
+
+div.topics > figure {
+	display:grid;
+}
+div.topics > figure > * {
+	grid-area: 2/1/2/1;
 }
 div.topics > figure > figcaption {
+	grid-area: 1/1/1/1;
+	margin: .1em 0em;
+}
+div.topics > figure > figure {
+	z-index: 1;
+}
+
+div.topics > figure > figure + figure {
+	opacity: 0;
+    z-index: 1;
+}
+div.topics > figure > figure.inactive {
+    opacity: 0;
+    z-index: 1;
+    transition: opacity .5s, transform .2s linear;
+    transform: scale3d(.1,.1, .5) rotate3d(1,1,1,45deg);
+}
+div.topics > figure > figure.active {
+	opacity: 1;
+	z-index: 2;    
+    transition: opacity .5s;
+}
+
+div.topics > figure > figcaption {
 	xcolor: black;
-	xbackground: rgba(186,223,185,0.62);
+	background: rgba(186,223,185,0.62);
 	xcolor: white;
 	xbackground: #164e14;
 	color: #164e14;
-	xfont-weight: bolder;
-	font-size: larger;
+	font-weight: bolder;
+	font-size: 200%;
 }
-xdiv.topics > figure > figcaption::after {
+xdiv.topics > figure > figcaption::before {
 	content: "";
 	display: block;
 	padding: .1em 0em .1em 0em;
 	margin: 0em 0em .1em 0em;
 	background: #164e14;
 }
-
-div.topics > figure {}
 
 h1 { 
     font-family: 'Maiandra GD', tahoma, helvetica, sans-serif;
@@ -140,4 +174,3 @@ word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
 
 hr { clear: both; }
-
