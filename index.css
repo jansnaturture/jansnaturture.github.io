@@ -11,6 +11,39 @@ body {
     background: rgba(186,223,185,0.62);
     color: #341a0c;
 }
+
+h2 { text-align: center;}
+
+div.top {
+	text-align: center;
+}
+div.top * {
+	margin: unset;
+}
+div.top p {
+	font-style: italic;
+}
+div.gallery > figure > p {
+	margin: .2em 0em .2em 0em;
+	padding: .1em 0em .2em 0em;
+}
+div.gallery > figure > p:first-child {
+	xcolor: black;
+	xbackground: rgba(186,223,185,0.62);
+	xcolor: white;
+	xbackground: #164e14;
+	color: #164e14;
+	xfont-weight: bolder;
+	font-size: larger;
+}
+div.gallery > figure > p:first-child::after {
+	content: "";
+	display: block;
+	padding: .1em 0em;
+	xmargin: 0em 0em;
+	background: #164e14;
+}
+
 h1 { 
     font-family: 'Maiandra GD', tahoma, helvetica, sans-serif;
     font-style: normal;
@@ -87,9 +120,7 @@ figure {
     margin: .4em;
     box-shadow: 0px 0px 10px;
 	background: white;
-}
-figcaption {
-    text-align: center;
+	text-align: center;
 	color: black;
 }
 
