@@ -23,11 +23,43 @@ div.top * {
 div.top p {
 	font-style: italic;
 }
-div.gallery > figure > p {
-	margin: .2em 0em .2em 0em;
-	padding: .1em 0em .2em 0em;
+
+div.topics {
+    display: flex;
+    flex-flow: row;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
-div.gallery > figure > p:first-child {
+div.topics > * {
+	max-width: 20em;
+	margin: 0em;
+}
+div.topics > * {
+    display: inline-flex;
+    flex-direction: column;
+    padding: .4em;
+    margin: .4em;
+    box-shadow: 0px 0px 10px;
+	background: white;
+	text-align: center;
+	color: black;
+}
+
+div.topics figure > * {
+	width: inherit;
+	max-width: inherit;
+	padding: 0em;
+	margin: 0em;
+}
+
+div.topics > figure > figure + figure {
+	xxmargin: .2em 0em .2em 0em;
+	xpadding: .1em 0em .2em 0em;
+	display: none;
+	border: 5px solid red;
+}
+div.topics > figure > figcaption {
 	xcolor: black;
 	xbackground: rgba(186,223,185,0.62);
 	xcolor: white;
@@ -36,13 +68,15 @@ div.gallery > figure > p:first-child {
 	xfont-weight: bolder;
 	font-size: larger;
 }
-div.gallery > figure > p:first-child::after {
+xdiv.topics > figure > figcaption::after {
 	content: "";
 	display: block;
-	padding: .1em 0em;
-	xmargin: 0em 0em;
+	padding: .1em 0em .1em 0em;
+	margin: 0em 0em .1em 0em;
 	background: #164e14;
 }
+
+div.topics > figure {}
 
 h1 { 
     font-family: 'Maiandra GD', tahoma, helvetica, sans-serif;
@@ -85,13 +119,6 @@ a:hover {
 	cursor:pointer;
 }
 
-.thumb > figure {
-	max-width: 20em;
-}
-.thumb > figure > * {
-	xwidth: inherit;
-	max-width: inherit;
-}
 
 div.fb-iframe {
 	width: 100%;
@@ -102,27 +129,7 @@ div.fb-iframe iframe {
 	height: 800px;
 }
 
-div.gallery {
-    display: flex;
-    flex-flow: row;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-}
 
-figure:hover {
-}
-
-figure {
-    display: inline-flex;
-    flex-direction: column;
-    padding: .4em;
-    margin: .4em;
-    box-shadow: 0px 0px 10px;
-	background: white;
-	text-align: center;
-	color: black;
-}
 
 .hardbreak
 {
