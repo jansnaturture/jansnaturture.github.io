@@ -112,22 +112,19 @@ body {
     font-family: 'Maiandra GD', tahoma, helvetica, sans-serif;
     background: rgba(186,223,185,0.62);
     color: #341a0c;
+    text-align: center
 }
 
 h1 { 
     font-size: 300%; 
     clear: both;
+    margin: 0em;
 }
 
 h2 { text-align: center;}
 
-.top {
-	text-align: center;
-}
-.top * {
-	margin: unset;
-}
-.top p {
+h1 + p {
+	margin: .5em 0em;
 	font-style: italic;
 }
 
