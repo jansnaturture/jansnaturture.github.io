@@ -26,14 +26,12 @@
 
 /* Each topic is a card */
 .topics > * {
-    display: inline-flex;
-    flex-direction: column;
     padding: .4em;
     margin: .4em;
     box-shadow: 0px 0px 10px;
-	background: white;
-	text-align: center;
-	color: black;
+    background: white;
+    text-align: center;
+    color: black;
 }
 
 /* Each sub-topic is fitted to the topic */
@@ -56,16 +54,21 @@
 
 /* Figure topics are cards */
 .topics > figure {
-	display:grid;
+	display: grid;
+	grid-template-areas:
+	    "caption"
+	    "content";
 }
 /* All Content is in one cell */
 .topics > figure > * {
-	grid-area: 2/1/2/1;
+	xgrid-area: 2/1/2/1;
+	grid-area: content;
 	margin: .1em 0em;
 }
 /* Except figcaptionaption is a header/footer */
 .topics > figure > figcaption {
-	grid-area: 1/1/1/1;
+	xgrid-area: 1/1/1/1;
+	grid-area: caption;
 }
 /* Caption formatting */
 .topics > figure > figcaption {
@@ -76,6 +79,7 @@
 	color: #164e14;
 	font-weight: bolder;
 	font-size: 200%;
+	/* height: 1.5em; */
 }
 /* Topics can change content. So default to z-index 1 */
 .topics > figure > * {
