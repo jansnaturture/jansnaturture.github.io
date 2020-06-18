@@ -83,15 +83,16 @@
 				function onTicked() {
 					act(node.querySelectorAll(":hover").length == 0);
 				}
-				function onClicked() {
+				function next() {
 					act(true);
 				}
 				function onInit() {
 					act(false);
 				}
 				cards().forEach(consider);
-				node.onclick = onClicked;
-				onTick.push(act);
+				node.onclick = next;
+				node.onmouseleave = next;
+				window.setInterval(onTicked, 10000+Math.random()*2000);
 			}
 			function hookup_explain(node) {
 				node.onclick = function() { 
