@@ -121,15 +121,22 @@ h1 {
 
 h2 { text-align: center;}
 
-div.top {
+.top {
 	text-align: center;
 }
-div.top * {
+.top * {
 	margin: unset;
 }
-div.top p {
+.top p {
 	font-style: italic;
 }
+
+.bottom {
+	margin: auto;
+	max-width: 30em;
+	text-align: center;
+}
+
 a:link, a:visited { 
     text-decoration: none;
     color: #341a0c;
@@ -174,12 +181,8 @@ hr { clear: both; }
 
 /*************** Special facebook stuff ****************/
 
-div.fb-iframe {
-	width: 100%;
-    justify-content: center;
-}
 div.fb-iframe iframe {
-	width: inherit;
+	width: 500px;
 	height: 800px;
 }
 
