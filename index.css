@@ -6,10 +6,110 @@
 	;
 }
 
+/*************** Topics *******************/
+
+/* .topics is a flex with wrapping */
+.topics {
+    display: flex;
+    flex-flow: row;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+/* Each topic has a contrained size */
+.topics > * {
+	min-width: 10em;
+	max-width: 20em;
+	xwidth: auto;
+	margin: 0em;
+}
+
+/* Each topic is a card */
+.topics > * {
+    display: inline-flex;
+    flex-direction: column;
+    padding: .4em;
+    margin: .4em;
+    box-shadow: 0px 0px 10px;
+	background: white;
+	text-align: center;
+	color: black;
+}
+
+/* Each sub-topic is fitted to the topic */
+.topics > * > * {
+	width: inherit;
+	min-width: inherit;
+	max-width: inherit;
+	width: auto;
+	padding: 0em;
+	margin: 0em;
+}
+
+/* Images and video thing they have their own size, but they should not */
+.topics > * > figure > img,video {
+	max-width: 100%;
+	min-width: inherit;
+}
+
+/****************** Topic cards **********/
+
+/* Figure topics are cards */
+.topics > figure {
+	display:grid;
+}
+/* All Content is in one cell */
+.topics > figure > * {
+	grid-area: 2/1/2/1;
+	margin: .1em 0em;
+}
+/* Except figcaptionaption is a header/footer */
+.topics > figure > figcaption {
+	grid-area: 1/1/1/1;
+}
+/* Caption formatting */
+.topics > figure > figcaption {
+	xcolor: black;
+	background: rgba(186,223,185,0.62);
+	xcolor: white;
+	xbackground: #164e14;
+	color: #164e14;
+	font-weight: bolder;
+	font-size: 200%;
+}
+/* Topics can change content. So default to z-index 1 */
+.topics > figure > * {
+	z-index: 1;
+}
+/* Don't visibly render anything but the first card */
+.topics > figure > * + * {
+	opacity: 0;
+}
+/* If explicitly inactive */
+.topics > figure > .inactive {
+    opacity: 0;
+    transition: opacity .5s, transform .2s linear;
+    transform: scale3d(.1,.1, .5) rotate3d(1,1,1,45deg);
+}
+/* If explicitly active */
+.topics > figure > .active {
+	opacity: 1;
+	/* In front of the other cards */
+	z-index: 2;
+    transition: opacity .5s;
+}
+
+/**************** General markup **********/
+
 body {
     font-family: 'Maiandra GD', tahoma, helvetica, sans-serif;
     background: rgba(186,223,185,0.62);
     color: #341a0c;
+}
+
+h1 { 
+    font-size: 300%; 
+    clear: both;
 }
 
 h2 { text-align: center;}
@@ -23,96 +123,6 @@ div.top * {
 div.top p {
 	font-style: italic;
 }
-
-div.topics {
-    display: flex;
-    flex-flow: row;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-div.topics > * {
-	max-width: 20em;
-	margin: 0em;
-}
-div.topics > * {
-    display: inline-flex;
-    flex-direction: column;
-    padding: .4em;
-    margin: .4em;
-    box-shadow: 0px 0px 10px;
-	background: white;
-	text-align: center;
-	color: black;
-}
-
-div.topics figure > * {
-	width: inherit;
-	max-width: inherit;
-	padding: 0em;
-	margin: 0em;
-}
-
-
-xdiv {
-    transition: opacity 1s ease-out;
-    opacity: 0;
-    height: 0;
-    overflow: hidden;
-}
-xdiv.active {
-    opacity: 1;
-    height: auto;
-}
-
-div.topics > figure {
-	display:grid;
-}
-div.topics > figure > * {
-	grid-area: 2/1/2/1;
-}
-div.topics > figure > figcaption {
-	grid-area: 1/1/1/1;
-	margin: .1em 0em;
-}
-div.topics > figure > figure {
-	z-index: 1;
-}
-
-div.topics > figure > figure + figure {
-	opacity: 0;
-    z-index: 1;
-}
-div.topics > figure > figure.inactive {
-    opacity: 0;
-    z-index: 1;
-    transition: opacity .5s, transform .2s linear;
-    transform: scale3d(.1,.1, .5) rotate3d(1,1,1,45deg);
-}
-div.topics > figure > figure.active {
-	opacity: 1;
-	z-index: 2;    
-    transition: opacity .5s;
-}
-
-div.topics > figure > figcaption {
-	xcolor: black;
-	background: rgba(186,223,185,0.62);
-	xcolor: white;
-	xbackground: #164e14;
-	color: #164e14;
-	font-weight: bolder;
-	font-size: 200%;
-}
-
-h1 { 
-    font-family: 'Maiandra GD', tahoma, helvetica, sans-serif;
-    font-style: normal;
-    font-size: 300%; 
-    color: #164e14; 
-    clear: both;
-}
-
 a:link, a:visited { 
     text-decoration: none;
     color: #341a0c;
@@ -120,6 +130,15 @@ a:link, a:visited {
 a:hover {
     text-decoration: underline;
 }
+
+
+.hardbreak
+{
+word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+hr { clear: both; }
+
+/************* Hovering explanations ******/
 
 *:hover > .explain {
 	visibility: visible;
@@ -146,6 +165,7 @@ a:hover {
 	cursor:pointer;
 }
 
+/*************** Special facebook stuff ****************/
 
 div.fb-iframe {
 	width: 100%;
@@ -157,13 +177,3 @@ div.fb-iframe iframe {
 }
 
 
-
-.hardbreak
-{
-word-wrap: break-word; /* Internet Explorer 5.5+ */
-}
-.invisible {
-    display: none;
-}
-
-hr { clear: both; }
