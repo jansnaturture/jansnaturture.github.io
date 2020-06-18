@@ -54,6 +54,7 @@
 
 /* Figure topics are cards */
 .topics > figure {
+	display: -ms-grid;
 	display: grid;
 	grid-template-areas:
 	    "caption"
@@ -61,13 +62,15 @@
 }
 /* All Content is in one cell */
 .topics > figure > * {
-	xgrid-area: 2/1/2/1;
+	-ms-grid-row: 2;
+	-ms-grid-column: 1;
 	grid-area: content;
 	margin: .1em 0em;
 }
 /* Except figcaptionaption is a header/footer */
 .topics > figure > figcaption {
-	xgrid-area: 1/1/1/1;
+	-ms-grid-row: 1;
+	-ms-grid-column: 1;
 	grid-area: caption;
 }
 /* Caption formatting */
@@ -86,7 +89,7 @@
 	z-index: 1;
 }
 /* Don't visibly render anything but the first card */
-.topics > figure > * + * {
+.topics > figure > figure + * {
 	opacity: 0;
 }
 /* If explicitly inactive */

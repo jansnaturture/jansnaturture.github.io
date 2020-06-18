@@ -45,7 +45,7 @@
 				return { add: add, remove: remove };
 			}
 
-			function classTag(clazz, inverseClazz = undefined) {
+			function classTag(clazz, inverseClazz) {
 				var activateTag = classList(clazz);
 				var inactiveTag = classList(inverseClazz);
 				function set(node, active) {
@@ -78,7 +78,7 @@
 					cs = cards();
 					if (advance)
 					    active = (active + 1) % cs.length;
-					cs.forEach(consider);
+					forEach(cs, consider);
 				}
 				function onTicked() {
 					act(node.querySelectorAll(":hover").length == 0);
@@ -89,7 +89,7 @@
 				function onInit() {
 					act(false);
 				}
-				cards().forEach(consider);
+				//cards().forEach(consider);
 				node.onclick = next;
 				node.onmouseleave = next;
 				window.setInterval(onTicked, 10000+Math.random()*2000);
@@ -102,7 +102,7 @@
 			function loaded() {
 				forEach(document.getElementsByClassName("explain"), hookup_explain)
 				forEach(document.querySelectorAll(".topics > *"), hookup_topic);
-				window.setInterval(tick, 10000);
+				//window.setInterval(tick, 10000);
 			};
 			//]]>
 		</script>
@@ -177,12 +177,12 @@
 		</div>
 		<p>
 			Med Jans Naturture er der uanede muligheder. Tag gerne kontakt for at arrangere en special tilrettelagt oplevelse.
-			<address>
-				Jans Naturture<br />
-				<a href="mailto:jan@naturture.com">Email: jan@naturture.com</a><br />
-				<a href="tel:+4528144464">Tlf: 28144464</a>
-			</address>
 		</p>
+		<address>
+			Jans Naturture<br />
+			<a href="mailto:jan@naturture.com">Email: jan@naturture.com</a><br />
+			<a href="tel:+4528144464">Tlf: 28144464</a>
+		</address>
 		<h2>Planlagte ture</h2>
 		<p>Se planlagte ture på facebook</p>
 		<div class="fb-iframe">
