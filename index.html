@@ -62,11 +62,15 @@
 			var activeTag = classTag("active", "inactive");
 
 			var onTick = [];
-			function tick() {
-				function invoke(x, i) {
-					x(i);
+			function maketick() {
+				var i = 0;
+				return function tick() {
+					var l = onTick.length;
+					if (i < l)
+						onTick[i]();
+				    if (l > 0)
+					    i = (i + 1)%l;
 				}
-				forEach(onTick, invoke);
 			}
 			function hookup_topic(node) {
 				function cards() { return node.querySelectorAll("figure"); }
@@ -92,7 +96,8 @@
 				//cards().forEach(consider);
 				node.onclick = next;
 				node.onmouseleave = next;
-				window.setInterval(onTicked, 10000+Math.random()*2000);
+				onTick.push(onTicked);
+				//window.setInterval(onTicked, 10000+Math.random()*2000);
 			}
 			function hookup_explain(node) {
 				node.onclick = function() { 
@@ -102,7 +107,7 @@
 			function loaded() {
 				forEach(document.getElementsByClassName("explain"), hookup_explain)
 				forEach(document.querySelectorAll(".topics > *"), hookup_topic);
-				//window.setInterval(tick, 10000);
+				window.setInterval(maketick(), 1000);
 			};
 			//]]>
 		</script>
