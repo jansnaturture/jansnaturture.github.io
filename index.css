@@ -204,10 +204,26 @@ img:hover ~ .img-credit, img:active ~ .img-credit, .clicked .img-credit {
 
 
 /*************** Special facebook stuff ****************/
+.fb-iframe {
+	position: relative;
+	overflow: hidden;
+	height: 0;
+	xpadding-bottom: 56.25%;
+	padding-bottom: 800px;
+	xwidth: 500px;
+	max-width: 100%;
+	margin: auto;
+	/* transform: scale(1); */
+}
 
-div.fb-iframe iframe {
+.fb-iframe iframe {
+	border: 0;
+	position: absolute;
+	left: 0;
+	top: 0;
 	width: 500px;
-	height: 800px;
+	height: 100%;
+	transform-origin: 0% 0%;
 }
 
 /*********** GIT stuff *****************/

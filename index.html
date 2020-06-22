@@ -17,6 +17,13 @@
 					callback(items[i], i);
 				}
 			}
+			function foldl(items, init, folder) {
+				var state = init;
+				for(var i = 0; i < items.length; ++i) {
+					state = folder(state, items[i], i);
+				}
+				return state;
+			}
 
 			let canClassList = !(document.createElement('p').classList === undefined);
 			function classList(clazz) {
@@ -110,9 +117,27 @@
 					node.style.visibility = 'hidden';
 				};
 			}
+			function transformWidth(node) {
+				var origW = node.scrollWidth;
+				var w = node.parentElement.clientWidth;
+				if (w < origW)
+					var factor = w/origW;
+				else
+					var factor = 1;
+				node.style.transform = "scale("+factor+")";
+			}
 			function loaded() {
+				console.log("explain");
 				forEach(document.getElementsByClassName("explain"), hookup_explain)
+				console.log("topics");
 				forEach(document.querySelectorAll(".topics > *"), hookup_topic);
+				var iframersize = foldl(
+				    document.querySelectorAll("iframe"),
+				    function() {},
+				    function(a,node) { return function x() { a(); transformWidth(node); }});
+				console.log("iframe", iframersize);
+			    document.iframersize = iframersize;
+			    window.onresize = iframersize;
 				window.setInterval(maketick(), 5000);
 			};
 			//]]>
@@ -286,8 +311,8 @@
 				<a href="tel:+4528144464">Tlf: 28144464</a>
 			</address>
 			<h2>Planlagte ture</h2>
-			<div class="fb-iframe">
-				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FNaturture-103537138057231&tabs=events&width=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId" 
+			<div id="fb-frame" class="fb-iframe">
+				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FNaturture-103537138057231&tabs=events&width=500px&small_header=true&hide_cover=false&show_facepile=false&appId" 
 					xstyle="border:none;overflow:hidden" 
 					scrolling="no" 
 					frameborder="0" 
