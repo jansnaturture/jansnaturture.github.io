@@ -184,3 +184,15 @@ div.fb-iframe iframe {
 }
 
 
+#git-id {
+	font-size: 50%;
+	opacity: .5;
+	position: fixed;
+	bottom: 0%;
+	elft: 0%;
+	color: gray;
+}
+
+#git-id::after {
+	content: " theme.css=$Id$"
+}
