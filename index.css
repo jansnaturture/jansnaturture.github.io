@@ -15,12 +15,12 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: stretch;
 }
 /* Each topic has a contrained size */
 .topics > * {
 	min-width: 10em;
 	max-width: 20em;
-	xwidth: auto;
 	margin: 0em;
 }
 
@@ -36,16 +36,12 @@
 
 /* Each sub-topic is fitted to the topic */
 .topics > * > * {
-	width: inherit;
-	min-width: inherit;
-	max-width: inherit;
-	width: auto;
 	padding: 0em;
 	margin: 0em;
 }
 
 /* Images and video thing they have their own size, but they should not */
-.topics > * > figure > img,video {
+.topics > * > figure > img, .topics > * > figure > video {
 	max-width: 100%;
 	min-width: inherit;
 }
@@ -65,13 +61,14 @@
 	-ms-grid-row: 2;
 	-ms-grid-column: 1;
 	grid-area: content;
-	margin: .1em 0em;
+	margin: .2em 0em 0em 0em;
 }
 /* Except figcaptionaption is a header/footer */
 .topics > figure > figcaption {
 	-ms-grid-row: 1;
 	-ms-grid-column: 1;
 	grid-area: caption;
+	align-self: baseline;
 }
 /* Caption formatting */
 .topics > figure > figcaption {
@@ -79,12 +76,14 @@
 	color: #164e14;
 	font-weight: bolder;
 	font-size: 200%;
-	/* height: 1.5em; */
 }
 /* Topics can change content. So default to z-index 1 */
 .topics > figure > * {
 	xz-index: 1;
 	z-index: 10;
+	font-style: italic;
+    font-family: 'Bradley Hand', cursive;	
+    text-align: center;
 }
 /* Don't visibly render anything but the first card */
 .topics > figure > figure + * {
@@ -93,8 +92,8 @@
 /* If explicitly inactive */
 .topics > figure > .inactive {
     opacity: 0;
-    transition: opacity .5s, transform .2s linear;
-    transform: scale3d(.1,.1, .5) rotate3d(1,1,1,45deg);
+    xtransition: opacity .5s, transform .2s linear;
+    xtransform: scale3d(.1,.1, .5) rotate3d(1,1,1,45deg);
 }
 /* If explicitly active */
 .topics > figure > .active {
@@ -193,7 +192,9 @@ img:hover ~ .img-credit, img:active ~ .img-credit {
     color: #ddd;
     position: relative;
     bottom: 1.6em;
-    right: .1em;
+    right: .2em;
+    font-family: sans-serif;
+    font-style: normal;
     text-align: right;
     text-shadow: rgba(0,0,0,.8) 1px 1px 0em, rgba(0,0,0,1) 0px 0px .5em;
 }
