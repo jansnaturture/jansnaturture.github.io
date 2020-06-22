@@ -71,6 +71,7 @@
 .topics > figure > figcaption {
 	-ms-grid-row: 1;
 	-ms-grid-column: 1;
+	height: 1.4em;
 	grid-area: caption;
 }
 /* Caption formatting */
@@ -85,6 +86,9 @@
 .topics > figure > * {
 	xz-index: 1;
 	z-index: 10;
+	font-style: italic;
+    font-family: 'Bradley Hand', cursive;	
+    text-align: center;
 }
 /* Don't visibly render anything but the first card */
 .topics > figure > figure + * {
@@ -193,7 +197,9 @@ img:hover ~ .img-credit, img:active ~ .img-credit {
     color: #ddd;
     position: relative;
     bottom: 1.6em;
-    right: .1em;
+    right: .2em;
+    font-family: sans-serif;
+    font-style: normal;
     text-align: right;
     text-shadow: rgba(0,0,0,.8) 1px 1px 0em, rgba(0,0,0,1) 0px 0px .5em;
 }
