@@ -114,12 +114,16 @@ body {
 }
 
 h1 { 
+	color: #164e14;
     font-size: 300%; 
     clear: both;
     margin: 0em;
 }
 
-h2 { text-align: center;}
+h2 {
+	color: #164e14;
+	 text-align: center;
+}
 
 h1 + p {
 	margin: .5em 0em;
