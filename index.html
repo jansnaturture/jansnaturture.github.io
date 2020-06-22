@@ -63,6 +63,7 @@
 				return set;
 			}
 			var activeTag = classTag("active", "inactive");
+			var clickedTag = classTag("clicked", "not-clicked");
 
 			var onTick = [];
 			function maketick() {
@@ -78,8 +79,8 @@
 			function hookup_topic(node) {
 				function cards() { return node.querySelectorAll("figure"); }
 				var active = 0;
-				function consider(node, i) {
-					activeTag(node, i == active);
+				function consider(n, i) {
+					activeTag(n, i == active);
 				}
 				function act(advance) {
 					cs = cards();
@@ -89,9 +90,11 @@
 				}
 				function onTicked() {
 					act(node.querySelectorAll(":hover").length == 0);
+					clickedTag(node, false);
 				}
 				function next() {
 					act(true);
+					clickedTag(node, true);
 				}
 				function onInit() {
 					act(false);

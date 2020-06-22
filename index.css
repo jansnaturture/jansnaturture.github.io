@@ -187,7 +187,7 @@ hr { clear: both; }
     margin: 0em;
     padding: 0em;
 }
-img:hover ~ .img-credit, img:active ~ .img-credit {
+img:hover ~ .img-credit, img:active ~ .img-credit, .clicked .img-credit {
 	opacity: 1;
     color: white;
     position: relative;
