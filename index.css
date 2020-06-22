@@ -132,6 +132,7 @@ h1 + p {
 	margin: auto;
 	max-width: 30em;
 	text-align: center;
+	clear: both;
 }
 
 a:link, a:visited { 
@@ -175,6 +176,25 @@ hr { clear: both; }
 	width: inherit;
 	cursor:pointer;
 }
+
+/************* Credit **********/
+.credit {
+	font-size: 75%;
+    width: 80%;
+    color: gray;
+    float: right;
+	text-align: right;
+	xbackground: rgba(255,255,255,1);
+	xpadding: .5em;
+	xmargin: -2em 0em;
+	z-index: -10;
+	xtransform: rotateZ(-20deg); /* translateX(-2em) translateY(-5em); */
+	xbox-shadow: 0px 0px 10px;
+}
+.credit::before {
+	content: "- ";
+}
+
 
 /*************** Special facebook stuff ****************/
 
