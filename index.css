@@ -67,6 +67,7 @@
 .topics > figure > figcaption {
 	-ms-grid-row: 1;
 	-ms-grid-column: 1;
+	height: 1.4em;
 	grid-area: caption;
 	align-self: baseline;
 }
