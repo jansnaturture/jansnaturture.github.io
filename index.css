@@ -6,6 +6,19 @@
 	;
 }
 
+@font-face {
+  font-family: "BradleyHandITC";
+  src: url("font/bradhitc.eot"); /* IE9 Compat Modes */
+  src: url("font/bradhitc.eot?#iefix") format("embedded-opentype"),
+    url("font/bradhitc.otf") format("opentype"),
+    url("font/bradhitc.svg") format("svg"),
+    url("font/bradhitc.ttf") format("truetype"),
+    url("font/bradhitc.woff") format("woff"),
+    url("fontbradhitc.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
 /*************** Topics *******************/
 
 /* .topics is a flex with wrapping */
@@ -84,7 +97,7 @@
 	xz-index: 1;
 	z-index: 10;
 	font-style: italic;
-    font-family: 'Bradley Hand', cursive;	
+    font-family: 'Bradley Hand', 'BradleyHandITC' cursive;	
     text-align: center;
 }
 /* Don't visibly render anything but the first card */
