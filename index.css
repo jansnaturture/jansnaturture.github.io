@@ -94,7 +94,6 @@
 }
 /* Topics can change content. So default to z-index 1 */
 .topics > figure > * {
-	xz-index: 1;
 	z-index: 10;
 	font-style: italic;
     font-family: 'Bradley Hand', 'BradleyHandITC' cursive;	
@@ -107,14 +106,10 @@
 /* If explicitly inactive */
 .topics > figure > .inactive {
     opacity: 0;
-    xtransition: opacity .5s, transform .2s linear;
-    xtransform: scale3d(.1,.1, .5) rotate3d(1,1,1,45deg);
 }
 /* If explicitly active */
 .topics > figure > .active {
 	opacity: 1;
-	/* In front of the other cards */
-	xz-index: 2;
     transition: opacity .5s;
 }
 
