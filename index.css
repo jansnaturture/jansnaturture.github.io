@@ -107,8 +107,7 @@
 }
 
 .topics > figure > figure > figcaption {
-    font-family: 'MarckScript-Regular', 'Bradley Hand', 'BradleyHandITC', cursive;		
-    font-size: 120%;
+    font-family: 'Bradley Hand', 'BradleyHandITC', cursive;		
 }
 
 /* Topics can change content. So default to z-index 1 */
