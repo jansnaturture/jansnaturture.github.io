@@ -1,3 +1,17 @@
+:root {
+	--dark0: #164e14;  
+	--dark0a: #164e14ee;  
+	--dark0b: #164e1411;  
+    --visited: #341a0c;
+    --light1: rgba(186,223,185);
+    --light1a: rgba(186,223,185,0.62);
+    --light0: rgba(200,255,200);
+    --active-display: block;
+    --active-opacity: 1;
+    --inactive-display: block;
+    --inactive-opacity: 0;
+}
+
 
 @font-face {
 	font-family: "Maiandra GD"; 
@@ -35,98 +49,128 @@
 /*************** Topics *******************/
 
 /* .topics is a flex with wrapping */
-.topics {
-    display: flex;
-    flex-flow: row;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: stretch;
-}
-/* Each topic has a contrained size */
-.topics > * {
-	min-width: 10em;
-	max-width: 20em;
-	margin: 0em;
-}
 
-/* Each topic is a card */
-.topics > * {
-    padding: .4em;
-    margin: .4em;
-    box-shadow: 0px 0px 10px;
-    background: white;
-    text-align: center;
-    color: black;
+.topics { /* IE compat */
+	display: flex;
+	flex-flow: row;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: stretch;
 }
-
-/* Each sub-topic is fitted to the topic */
-.topics > * > * {
-	padding: 0em;
-	margin: 0em;
-}
-
-/* Images and video thing they have their own size, but they should not */
-.topics > * > figure > img, .topics > * > figure > video {
-	max-width: 100%;
-	min-width: inherit;
+@supports (display: grid) {
+	.topics {
+      justify-content: center;
+	  grid-template-columns: repeat(auto-fit, minmax(10em, 20em));
+	  display: grid;
+	  gap: 0px;
+	}
 }
 
 /****************** Topic cards **********/
-
-/* Figure topics are cards */
-.topics > figure {
+.topics > figure  { /* IE compat */
 	display: -ms-grid;
-	display: grid;
-	grid-template-areas:
-	    "caption"
-	    "content";
+	display: block;
+	min-width: inherit;
+	max-width: 20em;
 }
-/* All Content is in one cell */
+
+.topics > figure {
+    border: 6px solid #164e14;
+	margin: .5em;
+    padding: 0em;
+	background: rgba(186,223,185,0.62);
+    color: black;
+	z-index: 10;
+	display: grid;
+	grid-template: "header" "content" "footer";
+	vertical-align: top;
+}
 .topics > figure > * {
+    padding: .5em;
+	-ms-grid-row: 3;
+	-ms-grid-column: 1;
+}
+.topics > figure > figure {
+    max-width: inherit;
+    box-shadow: 1px 1px .5em .5em #777c;
+    background: #fffe;
+	margin: .5em .5em;
+	padding: .2em;
+    grid-area: content;
 	-ms-grid-row: 2;
 	-ms-grid-column: 1;
-	grid-area: content;
-	max-width: inherit;
-	margin: .2em 0em 0em 0em;
 }
-/* Except figcaptionaption is a header/footer */
+
 .topics > figure > figcaption {
-	-ms-grid-row: 1;
-	-ms-grid-column: 1;
-	height: 1.4em;
-	grid-area: caption;
-	align-self: baseline;
-}
-/* Caption formatting */
-.topics > figure > figcaption {
-	background: rgba(186,223,185,0.62);
-	color: #164e14;
+	background: #164e14;
+	xborder: 1px solid red;
+	color: rgba(186,223,185);
+	padding: .1em .2em;
+	margin: -2px;
 	font-weight: bold;
 	font-size: 200%;
+	display: block;
+	grid-area: header;
+	-ms-grid-row: 1;
+	-ms-grid-column: 1;
 }
+
+/* IE Compat for chaning contents */
+.topics > figure > figure {
+	visibility: hidden;
+	display: none;
+}
+.topics > figure > figure:first-of-type {
+	visibility: visible;
+	display: -ms-grid;
+	display: block;
+}
+.topics > figure > figure.inactive {
+	visibility: hidden;
+	display: none;
+}
+.topics > figure > figure.active {
+	visibility: visible;
+	display: -ms-grid;
+	display: block;
+}
+
+@supports (display: var(--active-display)) {
+	.topics > figure > figure {
+		display: var(--inactive-display);
+		opacity: var(--inactive-opacity);
+	}
+	.topics > figure > figure:first-of-type {
+		display: var(--active-display);
+		opacity: var(--active-opacity);
+	}
+	.topics > figure > figure.inactive {
+		display: var(--inactive-display);
+		opacity: var(--inactive-opacity);
+	}
+	.topics > figure > figure.active {
+		display: var(--active-display);
+		opacity: var(--active-opacity);
+		transition: opacity .5s;
+	}
+}
+
+/***** Content of topic cards */
 
 .topics > figure > figure > figcaption {
-    font-family: cursive;		
+    /* font-family: "Maiandra GD", "BradleyHandITC", "MarckScript-Regular"; */
+    font-family: "BradleyHandITC", "MarckScript-Regular", italic;
+    font-weight: bolder;
+    text-align: center;	
 }
 
-/* Topics can change content. So default to z-index 1 */
-.topics > figure > * {
-	z-index: 10;
-    text-align: center;
-}
-/* Don't visibly render anything but the first card */
-.topics > figure > figure + * {
-	opacity: 0;
-}
-/* If explicitly inactive */
-.topics > figure > .inactive {
-    opacity: 0;
-}
-/* If explicitly active */
-.topics > figure > .active {
-	opacity: 1;
-    transition: opacity .5s;
+
+
+/* Images and video thing they have their own size, but they should not */
+.topics > figure > figure > img, .topics > figure > figure > video {
+	max-width: 100%;
+	min-width: inherit;
+    display: block;
 }
 
 /**************** General markup **********/
@@ -135,7 +179,6 @@ body {
     font-family: 'Maiandra GD', tahoma, helvetica, sans-serif;
     background: rgba(186,223,185,0.62);
     color: #341a0c;
-    text-align: center
 }
 
 h1 { 
@@ -147,7 +190,7 @@ h1 {
 
 h2 {
 	color: #164e14;
-	 text-align: center;
+    text-align: center;
 }
 
 h1 + p {
@@ -239,9 +282,7 @@ img:hover ~ .img-credit, img:active ~ .img-credit {
 	position: relative;
 	overflow: hidden;
 	height: 0;
-	xpadding-bottom: 56.25%;
 	padding-bottom: 800px;
-	xwidth: 500px;
 	max-width: 100%;
 	margin: auto;
 	/* transform: scale(1); */
