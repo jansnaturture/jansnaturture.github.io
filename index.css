@@ -52,25 +52,47 @@
 /*************** Topics *******************/
 
 /* .topics is a flex with wrapping */
+.topics { /* IE compat */
+	display: flex;
+	flex-flow: row;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: stretch;
+}
+.topics > *  { /* IE compat */
+	display: -ms-grid;
+	display: block;
+	min-width: inherit;
+	max-width: 20em;
+    margin: .5em;
+    padding: .5em;
+}
 
-.topics {
-  justify-content: center;
-  align-items: stretch;
-  grid-template-columns: repeat(auto-fill,minmax(10em, 20em));
-  grid-auto-rows: max-content;
-  justify-content: center;
-  align-items: top;
-  display: grid;
-  gap: 1em;
+@supports(display: grid) {
+	.topics {
+	  justify-content: center;
+	  align-items: stretch;
+	  grid-template-columns: repeat(auto-fill,minmax(10em, 20em));
+	  grid-auto-rows: max-content;
+	  justify-content: center;
+	  align-items: top;
+	  display: grid;
+	  gap: 1em;
+	}
+	.topics > * {
+		margin: 0em;
+		padding: 0em;
+	}
 }
 
 .topics > * {
-	margin: 0em;
-    padding: 0em;
 	background: #164e14;
     color: white;
-    border: .5em solid #164e14;
+    xborder: .5em solid #164e14;
 }
+
+
 .topics > * > * {
 	color: inherit;	
 	padding: 0em;
@@ -127,22 +149,26 @@
 	grid-column: 1;
 }
 .swap > li {
+	display: none;
 	display: var(--inactive-display);
 	opacity: var(--inactive-opacity);
 	visibility: var(--inactive-visibilty);
 }
 .swap > li:first-of-type {
+	display: block;
 	display: var(--active-display);
 	opacity: var(--active-opacity);
 	visibility: var(--active-visibilty);
 	z-index: 1;
 }
 .swap > li.inactive {
+	display: none;
 	display: var(--inactive-display);
 	opacity: var(--inactive-opacity);
 	visibility: var(--inactive-visibilty);
 }
 .swap > li.active {
+	display: block;
 	display: var(--active-display);
 	opacity: var(--active-opacity);
 	visibility: var(--active-visibilty);
