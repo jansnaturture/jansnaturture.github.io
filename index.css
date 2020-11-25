@@ -120,25 +120,20 @@
 }
 /* FANCY photo layouts */
 .topics > * figure {
-	border: 1px solid red;
     transform: rotate(3deg) scale(var(--figure-inactive-scale));
     transition: transform .5s;
     transition-timing-function: ease;
 }
 .topics > *:nth-child(2n) figure {
-	border: 1px solid magenta;
     transform: rotate(-2deg) scale(var(--figure-inactive-scale));
 }
 .topics > *:nth-child(3n) figure {
-	border: 1px solid cyan;
     transform: rotate(5deg) scale(var(--figure-inactive-scale));
 }
 .topics > *:nth-child(5n) figure {
-	border: 1px solid yellow;
     transform: rotate(-7deg) scale(var(--figure-inactive-scale));
 }
 .topics > *:hover figure, .topics > *:active figure {
-	border: 1px solid blue;
     transform: rotate(0deg) scale(1);
 }
 .swap { 
