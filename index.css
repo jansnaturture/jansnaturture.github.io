@@ -8,8 +8,11 @@
     --light0: rgba(200,255,200);
     --active-display: block;
     --active-opacity: 1;
+    --active-visibilty: visible;
     --inactive-display: block;
-    --inactive-opacity: 0;
+    --inactive-opacity: .3;
+    --inactive-visibilty: visible;
+    --figure-inactive-scale: .9;
 }
 
 
@@ -50,128 +53,112 @@
 
 /* .topics is a flex with wrapping */
 
-.topics { /* IE compat */
-	display: flex;
-	flex-flow: row;
-	flex-direction: row;
-	flex-wrap: wrap;
-	align-items: stretch;
-}
-@supports (display: grid) {
-	.topics {
-      justify-content: center;
-	  grid-template-columns: repeat(auto-fit, minmax(10em, 20em));
-	  display: grid;
-	  gap: 0px;
-	}
+.topics {
+  justify-content: center;
+  align-items: stretch;
+  grid-template-columns: repeat(auto-fill,minmax(10em, 20em));
+  grid-auto-rows: max-content;
+  justify-content: center;
+  align-items: top;
+  display: grid;
+  gap: 1em;
 }
 
-/****************** Topic cards **********/
-.topics > figure  { /* IE compat */
-	display: -ms-grid;
-	display: block;
-	min-width: inherit;
-	max-width: 20em;
-}
-
-.topics > figure {
-    border: 6px solid #164e14;
-	margin: .5em;
+.topics > * {
+	margin: 0em;
     padding: 0em;
-	background: rgba(186,223,185,0.62);
-    color: black;
-	z-index: 10;
-	display: grid;
-	grid-template: "header" "content" "footer";
-	vertical-align: top;
-}
-.topics > figure > * {
-    padding: .5em;
-	-ms-grid-row: 3;
-	-ms-grid-column: 1;
-}
-.topics > figure > figure {
-    max-width: inherit;
-    box-shadow: 1px 1px .5em .5em #777c;
-    background: #fffe;
-	margin: .5em .5em;
-	padding: .2em;
-    grid-area: content;
-	-ms-grid-row: 2;
-	-ms-grid-column: 1;
-}
-
-.topics > figure > figcaption {
 	background: #164e14;
+    color: white;
+    border: .5em solid #164e14;
+}
+.topics > * > * {
+	color: inherit;	
+	padding: 0em;
+	margin: 0em;
 	xborder: 1px solid red;
-	color: rgba(186,223,185);
-	padding: .1em .2em;
-	margin: -2px;
+}
+.topics > * > h2 {
+	min-height: 2.5em;
 	font-weight: bold;
 	font-size: 200%;
-	display: block;
-	grid-area: header;
-	-ms-grid-row: 1;
-	-ms-grid-column: 1;
+}
+/* Images and video thing they have their own size, but they should not */
+.topics figure > img:first-of-type, .topics figure > video:first-of-type {
+	width: 100%;
 }
 
-/* IE Compat for chaning contents */
-.topics > figure > figure {
-	visibility: hidden;
-	display: none;
+.topics > * figure:first-of-type {
+   	max-width: 100%;
+    box-shadow: .1em .2em .5em .4em #0003;
+    background: white;
+    color: black;
+	margin: 1em 1em;
+	display: grid;
+	min-height: 250px;
 }
-.topics > figure > figure:first-of-type {
-	visibility: visible;
-	display: -ms-grid;
-	display: block;
+/* FANCY photo layouts */
+.topics > * figure {
+	border: 1px solid red;
+    transform: rotate(3deg) scale(var(--figure-inactive-scale));
+    transition: transform .5s;
+    transition-timing-function: ease;
 }
-.topics > figure > figure.inactive {
-	visibility: hidden;
-	display: none;
+.topics > *:nth-child(2n) figure {
+	border: 1px solid magenta;
+    transform: rotate(-2deg) scale(var(--figure-inactive-scale));
 }
-.topics > figure > figure.active {
-	visibility: visible;
-	display: -ms-grid;
-	display: block;
+.topics > *:nth-child(3n) figure {
+	border: 1px solid cyan;
+    transform: rotate(5deg) scale(var(--figure-inactive-scale));
 }
-
-@supports (display: var(--active-display)) {
-	.topics > figure > figure {
-		display: var(--inactive-display);
-		opacity: var(--inactive-opacity);
-	}
-	.topics > figure > figure:first-of-type {
-		display: var(--active-display);
-		opacity: var(--active-opacity);
-	}
-	.topics > figure > figure.inactive {
-		display: var(--inactive-display);
-		opacity: var(--inactive-opacity);
-	}
-	.topics > figure > figure.active {
-		display: var(--active-display);
-		opacity: var(--active-opacity);
-		transition: opacity .5s;
-	}
+.topics > *:nth-child(5n) figure {
+	border: 1px solid yellow;
+    transform: rotate(-7deg) scale(var(--figure-inactive-scale));
+}
+.topics > *:hover figure, .topics > *:active figure {
+	border: 1px solid blue;
+    transform: rotate(0deg) scale(1);
+}
+.swap { 
+	display: grid;
+}
+.swap > li {
+	grid-row: 1;
+	grid-column: 1;
+}
+.swap > li {
+	display: var(--inactive-display);
+	opacity: var(--inactive-opacity);
+	visibility: var(--inactive-visibilty);
+}
+.swap > li:first-of-type {
+	display: var(--active-display);
+	opacity: var(--active-opacity);
+	visibility: var(--active-visibilty);
+	z-index: 1;
+}
+.swap > li.inactive {
+	display: var(--inactive-display);
+	opacity: var(--inactive-opacity);
+	visibility: var(--inactive-visibilty);
+}
+.swap > li.active {
+	display: var(--active-display);
+	opacity: var(--active-opacity);
+	visibility: var(--active-visibilty);
+	transition: opacity .5s;
+	z-index: 1;
 }
 
 /***** Content of topic cards */
 
-.topics > figure > figure > figcaption {
+.topics > * > ul > li > figure > figcaption {
     /* font-family: "Maiandra GD", "BradleyHandITC", "MarckScript-Regular"; */
     font-family: "BradleyHandITC", "MarckScript-Regular", italic;
     font-weight: bolder;
     text-align: center;	
 }
 
-
-
-/* Images and video thing they have their own size, but they should not */
-.topics > figure > figure > img, .topics > figure > figure > video {
-	max-width: 100%;
-	min-width: inherit;
-    display: block;
-}
 
 /**************** General markup **********/
 

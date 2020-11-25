@@ -2,24 +2,23 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="description" content="Uforglemmelige naturture i vadehavets natur med den erfarne guide Jan Ravnborg" />
-		<meta name="git-id" content="$Id$" />
-		<meta name="git-export" content="$Format:%H$" />
-
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="description" content="Uforglemmelige naturture i vadehavets natur med den erfarne guide Jan Ravnborg"/>
+		<meta name="git-id" content="$Id$"/>
+		<meta name="git-export" content="$Format:%H$"/>
 		<script>
 			//<![CDATA[
 			function regExpEscape(literal) {
-                return literal.replace(/[-[\]{}()*+!<=:?.\/\\^$|#\s,]/g, '\\$&');
+				return literal.replace(/[-[\]{}()*+!<=:?.\/\\^$|#\s,]/g, '\\$&');
 			}
 			function forEach(items, callback) {
-				for(var i = 0; i < items.length; ++i) {
+				for (var i = 0; i < items.length; ++i) {
 					callback(items[i], i);
 				}
 			}
 			function foldl(items, init, folder) {
 				var state = init;
-				for(var i = 0; i < items.length; ++i) {
+				for (var i = 0; i < items.length; ++i) {
 					state = folder(state, items[i], i);
 				}
 				return state;
@@ -29,16 +28,22 @@
 			function classList(clazz) {
 				if (clazz === undefined) {
 					function ignore(node) {}
-					return { add: ignore, remove: ignore };
+					return {
+						add: ignore,
+						remove: ignore
+					};
 				}
-				if ( canClassList ) {
+				if (canClassList) {
 					function add(node) {
 						return node.classList.add(clazz);
 					}
 					function remove(node) {
 						return node.classList.remove(clazz);
 					}
-					return { add: add, remove: remove };
+					return {
+						add: add,
+						remove: remove
+					};
 				}
 
 				function add(node) {
@@ -52,7 +57,10 @@
 					if (change)
 						node.className = rm.node.className.replace(rm, '');
 				}
-				return { add: add, remove: remove };
+				return {
+					add: add,
+					remove: remove
+				};
 			}
 
 			function classTag(clazz, inverseClazz) {
@@ -80,12 +88,14 @@
 					var l = onTick.length;
 					if (i < l)
 						onTick[i]();
-				    if (l > 0)
-					    i = (i + 1)%l;
+					if (l > 0)
+						i = (i + 1) % l;
 				}
 			}
 			function hookup_topic(node) {
-				function cards() { return node.querySelectorAll("figure"); }
+				function cards() {
+					return node.querySelectorAll("div > ul > li");
+				}
 				var active = 0;
 				function consider(n, i) {
 					activeTag(n, i == active);
@@ -93,7 +103,7 @@
 				function act(advance) {
 					cs = cards();
 					if (advance)
-					    active = (active + 1) % cs.length;
+						active = (active + 1) % cs.length;
 					forEach(cs, consider);
 				}
 				function onTicked() {
@@ -114,239 +124,255 @@
 				//window.setInterval(onTicked, 10000+Math.random()*2000);
 			}
 			function hookup_explain(node) {
-				node.onclick = function() { 
+				node.onclick = function() {
 					node.style.visibility = 'hidden';
-				};
+				}
+				;
 			}
 			function transformWidth(node) {
 				var origW = node.scrollWidth;
 				var w = node.parentElement.clientWidth;
 				if (w < origW)
-					var factor = w/origW;
+					var factor = w / origW;
 				else
 					var factor = 1;
-				node.style.transform = "scale("+factor+")";
+				node.style.transform = "scale(" + factor + ")";
 			}
 			function loaded() {
 				console.log("explain");
 				forEach(document.getElementsByClassName("explain"), hookup_explain)
 				console.log("topics");
 				forEach(document.querySelectorAll(".topics > *"), hookup_topic);
-				var iframersize = foldl(
-				    document.querySelectorAll("iframe"),
-				    function() {},
-				    function(a,node) { return function x() { a(); transformWidth(node); }});
+				var iframersize = foldl(document.querySelectorAll("iframe"), function() {}, function(a, node) {
+					return function x() {
+						a();
+						transformWidth(node);
+					}
+				});
 				console.log("iframe", iframersize);
-			    document.iframersize = iframersize;
-			    window.onresize = iframersize;
+				document.iframersize = iframersize;
+				window.onresize = iframersize;
 				window.setInterval(maketick(), 5000);
-			};
-			//]]>
+			}
+			;//]]>
 		</script>
 		<title>Jans Naturture</title>
-		<link rel="stylesheet" type="text/css" href="index.css" />
+		<link rel="stylesheet" type="text/css" href="index.css"/>
 	</head>
-
-
 	<body onload="loaded()">
 		<div id="fb-root"></div>
 		<div class="top">
 			<h1>Jans Naturture</h1>
 			<p>Uforglemmelige ture i vadehavets natur med den erfarne guide Jan Ravnborg.</p>
 		</div>
-
 		<div class="topics">
-		    <figure>
-				<figcaption>Sort Sol</figcaption>
-				<figure>
-					<video autoplay controls poster="img/sortsol_flok_i_horisont.jpg">
-						<source src="./vid/sortsol_vandrefalk_360.mp4" type="video/mp4" />
-						<source src="./vid/sortsol_vandrefalk_360.ogg" type="video/ogg" />
-					</video>
-					<figcaption>Kom tæt på de fantastiske flokke med hundredetusinder af stære. </figcaption>
-				</figure>
-			    <figure>
-					<img src="img/stæreflok_lige_før_de_siger_godnat.jpg" alt="Stæreflok_lige_før_de_siger_godnat" />
-					<div class="img-credit">Jens Thomasen</div>
-					<figcaption>Stæreflok lige før de siger godnat</figcaption>
-				</figure>
-			    <figure>
-					<img src="img/stære_i_tusindvis_på_aftenhimlen.jpg" alt="Stære i tusindvis på aftenhimlen" />
-					<div class="img-credit">Jens Thomasen</div>
-					<figcaption>Stære i tusindvis på aftenhimlen</figcaption>
-				</figure>
-			    <figure>
-					<img src="img/sort_sol_gæster_på_diget.jpg" alt="Sort sol gæster på diget" credit="Jens Thomasen" />
-					<div class="img-credit">Jens Thomasen</div>
-					<figcaption>Se sort sol på diget</figcaption>
-				</figure>
-				<div>
-    				<p>Guidede ture i hele sæsonen. Både for bus-selskaber og private. Vi har også samarbejde med overnatningssteder. Priser fra. 1500.-
-				</div>
-			</figure>
-			<figure>
-			    <figcaption>Østersture</figcaption>
-			    <figure>
-					<img src="img/østers_på_grill.jpg" alt="Lækre østers direkte fra vadehavet" />
-					<div class="img-credit">Jan Ravnborg</div>
-					<figcaption>Oplev vadehavet med tidevandet og pluk østers og tilbered dem direkte på stranden.</figcaption>
-				</figure>
-				<div>
-
-                <p>Særligt popuplært hos virksomhedsudflugter og familiesammenkomster op til 20 personer i ca. 2½ time. Pris kr. 1000.- og 25kr per person. 
-                </div>
-			</figure>
-			<figure>
-			    <figcaption>Sølsted Mose</figcaption>
-			    <figure>
-					<img src="img/rørdrum_i_flugt.jpg" alt="Rørdrum i flugt" credit="Niels Duhn" />
-					<div class="img-credit">Niels Duhn</div>
-				    <figcaption>Mosen byder på den helt specielle rørdrum</figcaption>
-				</figure>
-			    <figure>
-					<img src="img/to_traner_i_dans.jpg" alt="Traner i dans" />
-					<div class="img-credit">Harry Antonisen</div>
-				    <figcaption>Se tranerne i deres rette element</figcaption>
-				</figure>
-			    <figure>
-					<img src="img/2_gravænder_i_flugt.jpg" alt="2 Gravænder i flugt" />
-					<div class="img-credit">Niels Duhn</div>
-					<figcaption>Fru and viser vejen for gravænderne</figcaption>
-				</figure>
-			    <figure>
-					<img src="img/sivsanger_i_sang.jpeg" alt="sivsanger_i_sang" />
-					<div class="img-credit">Niels Duhn</div>
-					<figcaption>Få navn på fuglenes kald. Her sivsanger for fuld hals</figcaption>
-			    </figure>
-			    <div>
-			      <p>Tag med guiden i den fredede mose for unikke oplevelser. Priser fra 800.-
-			    </div>
-			</figure>
-			<figure>
-			    <figcaption>Solopgang med ørne og gæs</figcaption>
-			    <figure>
-					<img src="img/ung havørn i flugt.jpg" alt="Ung havørn i flugt" />
-					<div class="img-credit">Nield Duhn</div>
-					<figcaption>Ung Havørn ses ofte i området</figcaption>
-			    </figure>
-			    <figure>
-					<img src="img/gæs_i_flok.jpg" alt="gæs i flok" />
-					<div class="img-credit">Niels Duhn</div>
-					<figcaption>Gæs ses ofte i store flokke</figcaption>
-				</figure>
-			    <figure>
-					<img src="img/bramgæs på mark.jpeg" alt="bramgæs på mark" />
-					<div class="img-credit">Niels Duhn</div>
-					<figcaption>Bramgæs. Tidligere sjældne, nu omstridt og kilde til klager fra landmænd</figcaption>
-				</figure>
-			    <figure>
-					<img src="img/havørn_nedslag_ved_å.jpg" alt="Havørn fanger fisk" />
-					<div class="img-credit">Torben Andersen</div>
-					<figcaption></figcaption>
-			    </figure>
-			    <div>
-			    <p>Ved solopgang ser vi titusindvis af gæs og havørnen på udkig efter morgenmad
-			    <p>Priser fra kr. 800
-			    </div>
-			</figure>
-			<figure>
-			    <figcaption>Tranedans</figcaption>
-			    <figure>
-					<img src="img/to_traner_i_dans.jpg" alt="Traner i dans" />
-					<div class="img-credit">Harry Antonisen</div>
-				    <figcaption>Se tranerne i deres rette element</figcaption>
-				</figure>
-			    <figure>
-					<img src="img/traner_i_flugt.jpg" alt="Traner i dans" />
-					<div class="img-credit">Niels Duhn</div>
-				    <figcaption>To flotte traner over mosen</figcaption>
-				</figure>
-			    <div>
-			    I tranernes parringssæson tager vi på fotojagt. Hvis vi er heldige ser vi dem danse. Priser fra 800.-
-			    </div>
-			</figure>
-			<figure>
-			    <figcaption>Urskovsoplevelse</figcaption>
-				<figure>
-				    <img src="img/sortspætte_på_træ.jpg" alt="Sortspætte på træ" />
-					<div class="img-credit">Niels Duhn</div>
-				    <figcaption>Hør og se flere spættearter. f.eks. Sortspætter</figcaption>
-				</figure>
-				<div>
-				<p>Tag på opdagelse i den urørte skov og oplev den ægte danske natur. Priser fra 800.-
-				</div>
-			</figure>
-			<figure>
-			    <figcaption>Vidåslusen og Saltvandssøen</figcaption>
-			    <figure>
-					<img src="img/blisgæs_på_græs.jpg" alt="blisgæs på græs" />
-					<div class="img-credit">Niels Duhn</div>
-					<figcaption>Blisgæs på et af de mange diger i vadehavsområdet</figcaption>
-				</figure>
-				<figure>
-				    <img src="img/sølvhejre_i_flugt.jpg" alt="Sølvhejre i flugt" />
-					<div class="img-credit">Niels Duhn</div>
-				    <figcaption>Den store Sølvhejre, speciel for saltvandssøen</figcaption>
-				</figure>
-			    <figure>
-					<img src="img/spættet_sæl_på_strand.jpeg" alt="Spættet sæl på stranden" />
-					<div class="img-credit">Niels Duhn</div>
-					<figcaption>Spættet sæl - vadehavets vandhund</figcaption>
-				</figure>
-			    <figure>
-					<img src="img/skarv_i_flugt.jpg" alt="Skarv i flugt" />
-					<div class="img-credit">Niels Duhn</div>
-					<figcaption>Skarven er på besøg. Den yngler ikke i området</figcaption>
-				</figure>
-				<div>
-				<p>Den unikke saltvandssø og vidåslusen byder på helt specielle oplevelser. Priser fra 800.-
-				</div>
-			</figure>
-			<figure>
-			    <figcaption>Individuelle oplevelser</figcaption>
-			    <figure>
-					<img src="img/harer_på_mark.jpg" alt="harer på mark" />
-					<div class="img-credit">Niels Duhn</div>
-					<figcaption>Harer i marsklandskabet</figcaption>
-				</figure>
-			    <figure>
-					<img src="img/sule_i_flugt.jpg" alt="Sule i flugt" />
-					<div class="img-credit">Niels Duhn</div>
-					<figcaption>På Helgoland kan man se Suler og andre forbjergsfugle helt tæt på, få en større oplevelse med Naturguiden ved jeres side</figcaption>
-			    </figure>
-			    <figure>
-					<img src="img/stork_i_flugt.jpg" alt="Stork i flugt" />
-					<div class="img-credit">Niels Duhn</div>
-					<figcaption>Tag med syd for grænsen og se storkelandsbyen</figcaption>
-					<figcaption>Ved Schlüttsiel i det tyske vadehav kan man opleve store flokke af skestorke</figcaption>
-			    </figure>
-				<div>
+			<div>
+				<h2>Sort Sol</h2>
+				<ul class="swap">
+					<li>
+						<figure>
+							<video autoplay controls poster="img/sortsol_flok_i_horisont.jpg">
+								<source src="./vid/sortsol_vandrefalk_360.mp4" type="video/mp4"/>
+								<source src="./vid/sortsol_vandrefalk_360.ogg" type="video/ogg"/>
+							</video>
+							<figcaption>Kom tæt på de fantastiske flokke med hundredetusinder af stære. </figcaption>
+						</figure>
+					<li>
+						<figure>
+							<img src="img/stæreflok_lige_før_de_siger_godnat.jpg" alt="Stæreflok_lige_før_de_siger_godnat"/>
+							<div class="img-credit">Jens Thomasen</div>
+							<figcaption>Stæreflok lige før de siger godnat</figcaption>
+						</figure>
+					<li>
+						<figure>
+							<img src="img/stære_i_tusindvis_på_aftenhimlen.jpg" alt="Stære i tusindvis på aftenhimlen"/>
+							<div class="img-credit">Jens Thomasen</div>
+							<figcaption>Stære i tusindvis på aftenhimlen</figcaption>
+						</figure>
+					<li>
+						<figure>
+							<img src="img/sort_sol_gæster_på_diget.jpg" alt="Sort sol gæster på diget" credit="Jens Thomasen"/>
+							<div class="img-credit">Jens Thomasen</div>
+							<figcaption>Se sort sol på diget</figcaption>
+						</figure>
+				</ul>
+				Guidede ture i hele sæsonen. Både for bus-selskaber og private. Vi har også samarbejde med overnatningssteder. Priser fra. 1500.-
+			</div>
+			<div>
+				<h2>Østersture</h2>
+				<ul>
+					<li>
+						<figure>
+							<img src="img/østers_på_grill.jpg" alt="Lækre østers direkte fra vadehavet"/>
+							<div class="img-credit">Jan Ravnborg</div>
+							<figcaption>Oplev vadehavet med tidevandet og pluk østers og tilbered dem direkte på stranden.</figcaption>
+						</figure>
+				</ul>
+				Særligt popuplært til udflugter for familie eller virksomheder op til 20 personer i ca. 2½ time. Pris kr. 1000.- og 25kr per person. 
+			</div>
+			<div>
+				<h2>Sølsted Mose</h2>
+				<ul class="swap">
+					<li>
+						<figure>
+							<img src="img/rørdrum_i_flugt.jpg" alt="Rørdrum i flugt" credit="Niels Duhn"/>
+							<div class="img-credit">Niels Duhn</div>
+							<figcaption>Mosen byder på den helt specielle rørdrum</figcaption>
+						</figure>
+					<li>
+						<figure>
+							<img src="img/to_traner_i_dans.jpg" alt="Traner i dans"/>
+							<div class="img-credit">Harry Antonisen</div>
+							<figcaption>Se tranerne i deres rette element</figcaption>
+						</figure>
+					<li>
+						<figure>
+							<img src="img/2_gravænder_i_flugt.jpg" alt="2 Gravænder i flugt"/>
+							<div class="img-credit">Niels Duhn</div>
+							<figcaption>Fru and viser vejen for gravænderne</figcaption>
+						</figure>
+					<li>
+						<figure>
+							<img src="img/sivsanger_i_sang.jpeg" alt="sivsanger_i_sang"/>
+							<div class="img-credit">Niels Duhn</div>
+							<figcaption>Få navn på fuglenes kald. Her sivsanger for fuld hals</figcaption>
+						</figure>
+				</ul>
+				Tag med guiden i den fredede mose for unikke oplevelser. Priser fra 800.-
+			</div>
+			<div>
+				<h2>Solopgang med ørne og gæs</h2>
+				<ul class="swap">
+					<li>
+						<figure>
+							<img src="img/ung havørn i flugt.jpg" alt="Ung havørn i flugt"/>
+							<div class="img-credit">Nield Duhn</div>
+							<figcaption>Ung Havørn ses ofte i området</figcaption>
+						</figure>
+					<li>
+						<figure>
+							<img src="img/gæs_i_flok.jpg" alt="gæs i flok"/>
+							<div class="img-credit">Niels Duhn</div>
+							<figcaption>Gæs ses ofte i store flokke</figcaption>
+						</figure>
+					<li>
+						<figure>
+							<img src="img/bramgæs på mark.jpeg" alt="bramgæs på mark"/>
+							<div class="img-credit">Niels Duhn</div>
+							<figcaption>Bramgæs. Tidligere sjældne, nu omstridt og kilde til klager fra landmænd</figcaption>
+						</figure>
+					<li>
+						<figure>
+							<img src="img/havørn_nedslag_ved_å.jpg" alt="Havørn fanger fisk"/>
+							<div class="img-credit">Torben Andersen</div>
+							<figcaption></figcaption>
+						</figure>
+				</ul>
+				Ved solopgang ser vi titusindvis af gæs og havørnen på udkig efter morgenmad
+				<p>Priser fra kr. 800
+			</div>
+			<div>
+				<h2>Tranedans</h2>
+				<ul class="swap">
+					<li>
+						<figure>
+							<img src="img/to_traner_i_dans.jpg" alt="Traner i dans"/>
+							<div class="img-credit">Harry Antonisen</div>
+							<figcaption>Se tranerne i deres rette element</figcaption>
+						</figure>
+					<li>
+						<figure>
+							<img src="img/traner_i_flugt.jpg" alt="Traner i dans"/>
+							<div class="img-credit">Niels Duhn</div>
+							<figcaption>To flotte traner over mosen</figcaption>
+						</figure>
+				</ul>
+				I tranernes parringssæson tager vi på fotojagt. Hvis vi er heldige ser vi dem danse. Priser fra 800.-
+			</div>
+			<div>
+				<h2>Urskovsoplevelse</h2>
+				<ul>
+					<li>
+						<figure>
+							<img src="img/sortspætte_på_træ.jpg" alt="Sortspætte på træ"/>
+							<div class="img-credit">Niels Duhn</div>
+							<figcaption>Hør og se flere spættearter. f.eks. Sortspætter</figcaption>
+						</figure>
+				</ul>
+				Tag på opdagelse i den urørte skov og oplev den ægte danske natur. Priser fra 800.-
+			</div>
+			<div>
+				<h2>Vidåslusen og Saltvandssøen</h2>
+				<ul class="swap">
+					<li>
+						<figure>
+							<img src="img/blisgæs_på_græs.jpg" alt="blisgæs på græs"/>
+							<div class="img-credit">Niels Duhn</div>
+							<figcaption>Blisgæs på et af de mange diger i vadehavsområdet</figcaption>
+						</figure>
+					<li>
+						<figure>
+							<img src="img/sølvhejre_i_flugt.jpg" alt="Sølvhejre i flugt"/>
+							<div class="img-credit">Niels Duhn</div>
+							<figcaption>Den store Sølvhejre, speciel for saltvandssøen</figcaption>
+						</figure>
+					<li>
+						<figure>
+							<img src="img/spættet_sæl_på_strand.jpeg" alt="Spættet sæl på stranden"/>
+							<div class="img-credit">Niels Duhn</div>
+							<figcaption>Spættet sæl - vadehavets vandhund</figcaption>
+						</figure>
+					<li>
+						<figure>
+							<img src="img/skarv_i_flugt.jpg" alt="Skarv i flugt"/>
+							<div class="img-credit">Niels Duhn</div>
+							<figcaption>Skarven er på besøg. Den yngler ikke i området</figcaption>
+						</figure>
+				</ul>
+				Den unikke saltvandssø og vidåslusen byder på helt specielle oplevelser. Priser fra 800.-
+			</div>
+			<div>
+				<h2>Individuelle oplevelser</h2>
+				<ul class="swap">
+					<li>
+						<figure>
+							<img src="img/harer_på_mark.jpg" alt="harer på mark"/>
+							<div class="img-credit">Niels Duhn</div>
+							<figcaption>Harer i marsklandskabet</figcaption>
+						</figure>
+					<li>
+						<figure>
+							<img src="img/sule_i_flugt.jpg" alt="Sule i flugt"/>
+							<div class="img-credit">Niels Duhn</div>
+							<figcaption>På Helgoland kan man se Suler og andre forbjergsfugle helt tæt på, få en større oplevelse med Naturguiden ved jeres side</figcaption>
+						</figure>
+					<li>
+						<figure>
+							<img src="img/stork_i_flugt.jpg" alt="Stork i flugt"/>
+							<div class="img-credit">Niels Duhn</div>
+							<figcaption>Tag med syd for grænsen og se storkelandsbyen</figcaption>
+							<figcaption>Ved Schlüttsiel i det tyske vadehav kan man opleve store flokke af skestorke</figcaption>
+						</figure>
+				</ul>
 				Arranger din helt egen tur. tilpasset ønsker og sæsonen. Fra kr. 800.-
-				</div>
-
-			</figure>
+			</div>
 		</div>
 		<div class="bottom">
-			<p>
-				Med Jans Naturture er der uanede muligheder. Tag gerne kontakt for at arrangere en special tilrettelagt oplevelse.
-			</p>
+			<p>Med Jans Naturture er der uanede muligheder. Tag gerne kontakt for at arrangere en special tilrettelagt oplevelse.
+		</p>
 			<address>
-				<b>Jans Naturture</b><br />
-				<a href="mailto:jan@naturture.com">Email: jan@naturture.com</a><br />
+				<b>Jans Naturture</b>
+				<br/>
+				<a href="mailto:jan@naturture.com">Email: jan@naturture.com</a>
+				<br/>
 				<a href="tel:+4528144464">Tlf: 28144464</a>
 			</address>
 			<h2>Planlagte ture</h2>
 			<div id="fb-frame" class="fb-iframe">
-				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FNaturture-103537138057231&tabs=events&width=500px&small_header=true&hide_cover=false&show_facepile=false&appId" 
-					xstyle="border:none;overflow:hidden" 
-					scrolling="no" 
-					frameborder="0" 
-					allowTransparency="true" 
-					allow="encrypted-media">'
-				</iframe>
+				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FNaturture-103537138057231&tabs=events&width=500px&small_header=true&hide_cover=false&show_facepile=false&appId" xstyle="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media">'
+			</iframe>
 			</div>
 		</div>
-
 		<div id="git-id">index.html=$Id$</div>
 	</body>
 </html>
