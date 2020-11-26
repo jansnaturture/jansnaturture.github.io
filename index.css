@@ -10,7 +10,7 @@
     --active-opacity: 1;
     --active-visibilty: visible;
     --inactive-display: block;
-    --inactive-opacity: 1;
+    --inactive-opacity: .5;
     --inactive-visibilty: visible;
     --figure-inactive-scale: 1.05;
 }
@@ -97,7 +97,6 @@
 	color: inherit;	
 	padding: 0em;
 	margin: 0em;
-	xborder: 1px solid red;
 }
 .topics > * > h2 {
 	min-height: 2.5em;
@@ -117,7 +116,10 @@
    	border: 1px solid #ccc;
 }
 
-.swap > * > figure:first-of-type {
+.swap {
+	margin-bottom: .5em;
+}
+.swap figure:first-of-type {
 	display: grid;
 	min-height: 250px;
 }
@@ -135,6 +137,9 @@
 	display: var(--inactive-display);
 	opacity: var(--inactive-opacity);
 	visibility: var(--inactive-visibilty);
+	transition-property: opacity, transform;
+	transition-duration: .25s;
+	transition-timing-function: ease-in-out;
 }
 .swap > li:first-of-type {
 	display: block;
@@ -154,30 +159,33 @@
 	display: var(--active-display);
 	opacity: var(--active-opacity);
 	visibility: var(--active-visibilty);
-	transition-property: opacity transform;
-	transition-duration: 2s;
-	transition-timing-function: ease-in-out;
 	z-index: 1;
 }
-.swap li.active:nth-child(n) figure {
+.swap > li.active:nth-child(n) figure {
+	transition-property: opacity, transform;
+	transition-duration: .25s;
+	transition-timing-function: ease-in-out;
     transform: rotate(0deg) scale(var(--figure-active-scale));
 }
-.swap li:nth-child(2n) figure {
+.swap li:nth-child(1) figure {
+    transform: rotate(0deg) scale(var(--figure-inactive-scale));
+}
+.swap li.inactive:nth-child(1) figure {
     transform: rotate(-2deg) scale(var(--figure-inactive-scale));
 }
-.swap li:nth-child(3n) figure {
+.swap li:nth-child(2) figure {
     transform: rotate(2deg) scale(var(--figure-inactive-scale));
 }
-.swap li:nth-child(4n) figure {
+.swap li:nth-child(3) figure {
     transform: rotate(-4deg) scale(var(--figure-inactive-scale));
 }
-.swap li:nth-child(5n) figure {
+.swap li:nth-child(4) figure {
     transform: rotate(4deg) scale(var(--figure-inactive-scale));
 }
 
 /***** Content of topic cards */
 
-.topics > * > ul > li > figure > figcaption {
+.topics figure > figcaption {
     /* font-family: "Maiandra GD", "BradleyHandITC", "MarckScript-Regular"; */
     font-family: "BradleyHandITC", "MarckScript-Regular", italic;
     font-weight: bolder;
