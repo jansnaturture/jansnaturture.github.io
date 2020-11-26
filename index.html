@@ -92,9 +92,9 @@
 						i = (i + 1) % l;
 				}
 			}
-			function hookup_topic(node) {
+			function hookup_swap(node) {
 				function cards() {
-					return node.querySelectorAll("div > ul > li");
+					return node.children;
 				}
 				var active = 0;
 				function consider(n, i) {
@@ -117,11 +117,8 @@
 				function onInit() {
 					act(false);
 				}
-				//cards().forEach(consider);
 				node.onclick = next;
-				//node.onmouseleave = next;
 				onTick.push(onTicked);
-				//window.setInterval(onTicked, 10000+Math.random()*2000);
 			}
 			function hookup_explain(node) {
 				node.onclick = function() {
@@ -139,17 +136,14 @@
 				node.style.transform = "scale(" + factor + ")";
 			}
 			function loaded() {
-				console.log("explain");
 				forEach(document.getElementsByClassName("explain"), hookup_explain)
-				console.log("topics");
-				forEach(document.querySelectorAll(".topics > *"), hookup_topic);
+				forEach(document.querySelectorAll(".swap"), hookup_swap);
 				var iframersize = foldl(document.querySelectorAll("iframe"), function() {}, function(a, node) {
 					return function x() {
 						a();
 						transformWidth(node);
 					}
 				});
-				console.log("iframe", iframersize);
 				document.iframersize = iframersize;
 				window.onresize = iframersize;
 				window.setInterval(maketick(), 5000);
