@@ -225,7 +225,7 @@ h1 + p {
 	clear: both;
 }
 
-a:link, a:visited { 
+a:link, a:visited {
     text-decoration: none;
     color: #341a0c;
 }
@@ -239,6 +239,22 @@ a:hover {
 word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
 hr { clear: both; }
+
+div.mobilepay {
+	background: #5a78ff;
+	font: paytype,-apple-system,Helvetica,Arial,sans-serif;
+	width: 12em;
+	margin: 0px;
+	padding: .2em;
+}
+div.mobilepay img {
+	width: 6em;
+
+}
+div.mobilepay, div.mobilepay a:link, div.mobilepay a:visited {
+	color: white;
+	font-size: 150%;
+}
 
 /************* Hovering explanations ******/
 
