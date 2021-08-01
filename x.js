@@ -155,7 +155,5 @@ var X = {
 	transformWidth: transformWidth,
 	ready: ready
 };
-console.log("return X", X);
 return X;
 }();
-console.log("called X", X);
