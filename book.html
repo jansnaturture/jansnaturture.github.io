@@ -34,7 +34,7 @@ var qr_url ="mobilepay://send?phone=28144464&comment={{comment}}&amount={{amount
 var web_url ="https://www.mobilepay.dk/erhverv/betalingslink/betalingslink-svar?phone=28144464&amount={{amount}}&comment={{comment}}"
 var hash_args=decodeURIComponent(window.location.hash.substring(1)).split("&");
 var debug = {};
-function readInt(node, defaultValue) {
+function readFloat(node, defaultValue) {
 	if (node === undefined) {
 	    return defaultValue; 
 	} else if (node === null) {
@@ -46,11 +46,11 @@ function readInt(node, defaultValue) {
 			return node;
         }
 	} else if (typeof(node) == 'string') {
-		return readInt(parseInt(node), defaultValue);
+		return readFloat(parseFloat(node), defaultValue);
 	} else if (typeof(node) == 'object') {
-		return readInt(node.value, defaultValue);
+		return readFloat(node.value, defaultValue);
 	} else {
-	    return readInt(parseInt(node), defaultValue);
+	    return readFloat(parseFloat(node), defaultValue);
 	}
 };
 X.ready(function () {
@@ -80,8 +80,8 @@ var qr = new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.c
 var wb = document.getElementById("web_url");
 
 function update() {
-	var per_person = readInt(_pp);
-	var persons = readInt(_personer, 1);
+	var per_person = readFloat(_pp);
+	var persons = readFloat(_personer, 1);
 	var amount = per_person*persons;
 	var comment = _comment.value;
     set_value(_amount, amount);
@@ -95,7 +95,7 @@ function update() {
     wb.href = new_qr_url;
 };
 function add_persons(num) {
-	var p = readInt(_personer, 1) + readInt(num);
+	var p = readFloat(_personer, 1) + readFloat(num);
 	if (p >= 1)
 	    _personer.value  = p;
 	update();
