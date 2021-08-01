@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-WGXDX48');</script>
+		<!-- End Google Tag Manager -->
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-KT0Q1QK5CL"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'G-KT0Q1QK5CL');
+		</script>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="description" content="Book Jans Naturture"/>
+		<meta name="git-id" content="$Id$"/>
+		<meta name="git-export" content="$Format:%H$"/>
+		<script async=false defer=false src="x.js"></script>
+		<script async=false defer=false src="qrcode.js"></script>
+		<title>Book Jans Naturture</title>
+		<link rel="stylesheet" type="text/css" href="index.css"/>
+		<link rel="stylesheet" type="text/css" href="book.css"/>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+		<script>
+var qr_url ="mobilepay://send?phone=28144464&comment={{comment}}&amount={{amount}}"
+var web_url ="https://www.mobilepay.dk/erhverv/betalingslink/betalingslink-svar?phone=28144464&amount={{amount}}&comment={{comment}}"
+var hash_args=decodeURIComponent(window.location.hash.substring(1)).split("&");
+var debug = {};
+function readInt(node, defaultValue) {
+	if (node === undefined) {
+	    return defaultValue; 
+	} else if (node === null) {
+	    return defaultValue;
+	} else if (typeof(node) == 'number') {
+        if (isNaN(node)) {
+		    return defaultValue;
+        } else {
+			return node;
+        }
+	} else if (typeof(node) == 'string') {
+		return readInt(parseInt(node), defaultValue);
+	} else if (typeof(node) == 'object') {
+		return readInt(node.value, defaultValue);
+	} else {
+	    return readInt(parseInt(node), defaultValue);
+	}
+};
+X.ready(function () {
+var extract_vars=X.foldl(hash_args, {}, function (e, x) {
+	var kv=x.split("=", 2);
+	if (kv.length == 1)
+	    return e;
+	e[kv[0]]=kv[1];
+	return e;
+});
+function set_value(node, value) {
+	if (value === undefined)
+	    return;
+	node.value = value;
+}
+var _form = document.querySelectorAll("form#mobilepay")[0];
+var _personer = document.querySelectorAll("#personer")[0];
+var _pp = document.querySelectorAll("#pp")[0];
+var _comment = document.querySelectorAll("#comment")[0];
+var _amount = document.querySelectorAll("#amount")[0];
+var _lock = document.querySelectorAll("#lock")[0];
+set_value(_personer, extract_vars["personer"]);
+set_value(_pp, extract_vars["pp"]);
+set_value(_comment, extract_vars["comment"]);
+set_value(_lock, extract_vars["lock"]);
+var qr = new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
+var wb = document.getElementById("web_url");
+
+function update() {
+	var per_person = readInt(_pp);
+	var persons = readInt(_personer, 1);
+	var amount = per_person*persons;
+	var comment = _comment.value;
+    set_value(_amount, amount);
+    var new_qr_url = qr_url
+            .replace("{{amount}}", encodeURIComponent(amount))
+            .replace("{{comment}}", encodeURIComponent(comment));
+    var new_web_url = web_url
+            .replace("{{amount}}", encodeURIComponent(amount))
+            .replace("{{comment}}", encodeURIComponent(comment));
+    qr.makeCode(new_qr_url);
+    wb.href = new_qr_url;
+};
+function add_persons(num) {
+	var p = readInt(_personer, 1) + readInt(num);
+	if (p >= 1)
+	    _personer.value  = p;
+	update();
+}
+function do_mobilepay() {
+    update();
+    window.location = wb.href;
+}
+update();
+return {
+	add_persons: add_persons,
+	do_mobilepay: do_mobilepay
+}
+
+}, window);
+		</script>
+	</head>
+	<body onload="">
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGXDX48"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+		<h1>Book Jans Naturture</h1>
+		<p>Book og betal direkte med Mobilepay</p>
+		<p>Du kan booke og betale direkte via mobilepay. Vælg antal deltagere og scan QR koden i mobilepay appen 
+		<div class="booking_args">
+		    <form id="mobilepay">
+				<table>
+				    <tr><td></td>
+				        <td>
+						<input id="personer" name="personer" type=text value="1">
+        		        </td>
+        		        <td>
+						<label for="personer">person(er)</label>
+						</td>
+				    </tr>
+				    <tr><td>kr.</td>
+				        <td>
+        		        <input id="pp" name="pp" type="text" value="" readonly>
+        		        </td>
+        		        <td>
+            		    <label for="pp">/person</label>
+            		    </td>
+            		</tr>
+            		<tr><td>kr.</td>
+            		    <td>
+            		    <input id="amount" name="amount" type="text" value="" readonly>
+            		    </td>
+            		    <td>
+	        	        <label for="amount">Total</label>
+	        	        </td>
+	        	    </tr>
+	        	</table>
+				<div class="material-icons buttons">
+					<span id="person_add" onclick="window.add_persons(1)">person_add</span>
+					<span id="person_remove"  onclick="window.add_persons(-1)">person_remove</span>
+				</div>
+		        <div class="hidden">
+					<label for="comment">Comment</label>
+					<input id="comment" name="comment" type="text" value="">
+					<label for="lock">Lock</label>
+					<input id="lock" name="lock" type="boolean" value="">
+		        </div>
+		    </form>
+		</div>
+		<p>
+		<div>
+		<a href="" id="web_url">
+			<div class="mobilepay">
+			    <div>
+					<div id="qrcode"></div>
+			    </div>
+				<p>Skriv dato for turen i kommentaren.
+				<img src="img/mobillepay_white.png"/>
+			</div>
+	    </a>
+	    </div>
+		</p>
+		<div id="git-id">index.html=$Id$</div>
+	</body>
+</html>

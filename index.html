@@ -22,11 +22,29 @@
 		<meta name="description" content="Uforglemmelige naturture i vadehavets natur med den erfarne guide Jan Ravnborg"/>
 		<meta name="git-id" content="$Id$"/>
 		<meta name="git-export" content="$Format:%H$"/>
-		<script async=false defer=false src="x.js"></script>
+		<script  src="X.js" ></script>
+		<script>
+console.log("script", X);
+X.ready(function() {
+	console.log("scipt callback", X);
+	X.forEach(document.getElementsByClassName("explain"), X.hookup_explain)
+	X.forEach(document.querySelectorAll(".swap"), X.hookup_swap);
+	var iframersize = X.foldl(document.querySelectorAll("iframe"), function() {}, function(a, node) {
+		return function () {
+			a();
+			transformWidth(node);
+		}
+	});
+	document.iframersize = iframersize;
+	window.onresize = iframersize;
+	window.setInterval(X.maketick(), 5000);
+	console.log("scipt callback done", X);
+});
+		</script>
 		<title>Jans Naturture</title>
 		<link rel="stylesheet" type="text/css" href="index.css"/>
 	</head>
-	<body onload="x.loaded()">
+	<body>
 		<!-- Google Tag Manager (noscript) -->
 		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGXDX48"
 		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

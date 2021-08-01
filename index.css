@@ -243,15 +243,16 @@ hr { clear: both; }
 div.mobilepay {
 	background: #5a78ff;
 	font: paytype,-apple-system,Helvetica,Arial,sans-serif;
-	max-width: 500px;
-	margin: 0px;
-	padding: .2em;
+	max-width: 12em;
+	padding: .5em;
+	text-align: center;
 	clear: both;
 	margin: auto;
+	color: white;
 }
 div.mobilepay img {
 	width: 6em;
-
+	margin: auto;
 }
 div.mobilepay p {
 	margin: 0em;

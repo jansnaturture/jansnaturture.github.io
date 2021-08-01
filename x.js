@@ -1,17 +1,19 @@
-x = function(){
+X = function(){
 function regExpEscape(literal) {
 	return literal.replace(/[-[\]{}()*+!<=:?.\/\\^$|#\s,]/g, '\\$&');
 }
 function forEach(items, callback) {
-	for (var i = 0; i < items.length; ++i) {
-		callback(items[i], i);
+	if (items) {
+		for (i in items) {
+			if (items.hasOwnProperty(i)) {
+				callback(items[i], i);
+			}
+		}
 	}
 }
 function foldl(items, init, folder) {
 	var state = init;
-	for (var i = 0; i < items.length; ++i) {
-		state = folder(state, items[i], i);
-	}
+	forEach(items, function(x, i) { state = folder(state, x, i); });
 	return state;
 }
 
@@ -126,21 +128,22 @@ function transformWidth(node) {
 		var factor = 1;
 	node.style.transform = "scale(" + factor + ")";
 }
-function loaded() {
-	forEach(document.getElementsByClassName("explain"), hookup_explain)
-	forEach(document.querySelectorAll(".swap"), hookup_swap);
-	var iframersize = foldl(document.querySelectorAll("iframe"), function() {}, function(a, node) {
-		return function x() {
-			a();
-			transformWidth(node);
-		}
-	});
-	document.iframersize = iframersize;
-	window.onresize = iframersize;
-	window.setInterval(maketick(), 5000);
+function ready(callback, context){
+	var cb = (context === undefined) ? callback : function() {
+		var v = callback();
+		forEach(v, function(x, i) { context[i] = x });
+	};
+    // in case the document is already rendered
+    if (document.readyState!='loading') cb();
+    // modern browsers
+    else if (document.addEventListener) document.addEventListener('DOMContentLoaded', cb);
+    // IE <= 8
+    else document.attachEvent('onreadystatechange', function(){
+        if (document.readyState=='complete') cb();
+    });
 }
 
-return {
+var X = {
 	regExpEscape: regExpEscape,
 	forEach: forEach,
 	foldl: foldl,
@@ -150,6 +153,9 @@ return {
 	hookup_swap: hookup_swap,
 	hookup_explain: hookup_explain,
 	transformWidth: transformWidth,
-	loaded: loaded
-}
+	ready: ready
+};
+console.log("return X", X);
+return X;
 }();
+console.log("called X", X);
